@@ -74,10 +74,11 @@
             <div class="section__head">
                 <h2>Ежедневное послание</h2>
             </div>
-            <div class="cards" style="max-width:720px">
-                <article class="cardx">
+            <div class="daily-wrap">
+                <article class="daily-card">
+                    <div class="daily-emoji">💌</div>
                     <h4>Сегодняшние слова</h4>
-                    <p id="dailyMessageFull" style="font-size:18px; margin-top:8px">Сегодня я думаю о тебе</p>
+                    <p id="dailyMessageFull" class="daily-text">Сегодня я думаю о тебе</p>
                 </article>
             </div>
         </section>
@@ -97,6 +98,17 @@
                         <button class="btn" id="dailyClear">Очистить</button>
                     </div>
                     <p class="hint" style="margin-top:10px">Хранится локально в браузере (localStorage).</p>
+                </article>
+                <article class="cardx" style="text-align:left">
+                    <h4>Синхронизация через GitHub (опционально)</h4>
+                    <p class="hint">Чтобы видеть послание на всех устройствах, можно сохранить его в репозиторий.</p>
+                    <label style="display:block; margin:8px 0 6px; color: var(--sub)">GitHub персональный токен</label>
+                    <input id="ghToken" class="guest-input" type="password" placeholder="ghp_..." />
+                    <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap">
+                        <button class="btn" id="dailyLoadRemote">Загрузить из GitHub</button>
+                        <button class="btn btn--primary" id="dailySaveRemote">Сохранить в GitHub</button>
+                    </div>
+                    <p class="hint" style="margin-top:8px">Токен хранится только в твоём браузере и используется для записи в файл <code>daily.json</code> в этом репозитории.</p>
                 </article>
             </div>
         </section>
