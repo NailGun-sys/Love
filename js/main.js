@@ -59,26 +59,20 @@
     }
   });
 
-  // Hidden corner gesture to open Admin: tap top-left then top-right within 2.5s
+  // Double-tap anywhere to open Admin (within 350ms, small movement)
   (function(){
-    let lastCorner = '';
-    let lastTs = 0;
-    function whichCorner(x, y){
-      const w = window.innerWidth, h = window.innerHeight;
-      const m = 48; // margin threshold
-      if (x <= m && y <= m) return 'tl';
-      if (x >= w - m && y <= m) return 'tr';
-      if (x <= m && y >= h - m) return 'bl';
-      if (x >= w - m && y >= h - m) return 'br';
-      return '';
-    }
+    let lastTap = 0; let lastX = 0; let lastY = 0;
     window.addEventListener('pointerdown', (e) => {
-      const corner = whichCorner(e.clientX, e.clientY);
+      const active = document.activeElement;
+      if (active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable)) return;
       const now = Date.now();
-      if (corner === 'tl') { lastCorner = 'tl'; lastTs = now; }
-      else if (corner === 'tr' && lastCorner === 'tl' && (now - lastTs) < 2500) {
-        lastCorner = ''; lastTs = 0; showSection('#admin');
-      } else if (corner) { lastCorner = corner; lastTs = now; }
+      const dt = now - lastTap;
+      const dx = e.clientX - lastX; const dy = e.clientY - lastY;
+      if (dt < 350 && (dx*dx + dy*dy) < (42*42)) {
+        lastTap = 0; showSection('#admin');
+      } else {
+        lastTap = now; lastX = e.clientX; lastY = e.clientY;
+      }
     }, { passive: true });
   })();
 
