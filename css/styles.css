@@ -91,7 +91,7 @@ body {
 .farm-strip { display:flex; gap: 6px; justify-content:center; margin-top: 14px; }
 
 /* Animated flowers field */
-.flowers { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.flowers { position: fixed; left: 0; right: 0; top: auto; bottom: 0; height: 100svh; overflow: hidden; pointer-events: none; }
 .section#home { position: relative; }
 .flower {
   position: absolute;
@@ -104,7 +104,7 @@ body {
 @keyframes float {
   0% { transform: translateY(0) rotate(0deg); opacity: 0; }
   10% { opacity: 1; }
-  100% { transform: translateY(-110vh) rotate(360deg); opacity: .9; }
+  100% { transform: translateY(-110svh) rotate(360deg); opacity: .9; }
 }
 
 /* Memory grid */
@@ -145,9 +145,9 @@ body {
 .hearts { position: fixed; left: 0; right: 0; bottom: 0; pointer-events: none; display: grid; place-items: center; }
 .heart { position: absolute; font-size: var(--s, 14px); animation: pop 6s linear infinite; opacity: .8; }
 @keyframes pop {
-  0% { transform: translateY(0) scale(.8); opacity: 0; }
+  0% { transform: translateY(0) scale(.9); opacity: 0; }
   10% { opacity: 1; }
-  100% { transform: translateY(-160px) scale(1.4); opacity: 0; }
+  100% { transform: translateY(-90svh) scale(1.3); opacity: 0; }
 }
 
 /* Pixel Art */
@@ -280,7 +280,7 @@ body {
   .pixel { width: 56px; height: 56px; }
   .pixel--lg { width: 84px; height: 84px; }
   .playlist, .quests, .checklist, .pixel-gallery, .album-grid, .cards { width: 100%; }
-  .album-grid, .pixel-gallery { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+  .album-grid, .pixel-gallery { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
   .cards { gap: 12px; }
   .timeline li { grid-template-columns: 32px 1fr; }
   .fishing { max-width: 100%; padding: 0 6px; }
