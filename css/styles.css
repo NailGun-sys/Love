@@ -276,10 +276,12 @@ body {
 .photo img { width: 100%; display: block; image-rendering: pixelated; aspect-ratio: 1/1; object-fit: cover; }
 
 /* Quests */
-.quests { max-width: 720px; margin: 0 auto; background: #fff; border-radius: 14px; box-shadow: var(--shadow); padding: 12px 16px; list-style: none; }
-.quests li { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; gap: 12px; }
-.badge { opacity: .35; filter: grayscale(1); transition: .2s; }
-.badge.active { opacity: 1; filter: none; }
+.quests { max-width: 720px; margin: 0 auto; background: linear-gradient(180deg, #fff, #fff6fa); border-radius: 16px; box-shadow: var(--shadow); padding: 14px 16px; list-style: none; display: grid; gap: 10px; border: 2px solid #ffd3e2; }
+.quests li { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; background: #ffffff; border: 1px solid #ffe0ec; border-radius: 12px; padding: 10px 12px; box-shadow: 0 4px 16px rgba(255,77,136,.08); }
+.quests li span:first-child { font-weight: 600; }
+.badge { width: 36px; height: 36px; display: grid; place-items: center; background: #fff0f6; border: 1px solid #ffd3e2; border-radius: 10px; opacity: .45; filter: grayscale(1); transition: .25s ease; box-shadow: 0 4px 10px rgba(255,77,136,.12); }
+.badge.active { opacity: 1; filter: none; transform: translateY(-1px); box-shadow: 0 8px 18px rgba(255,77,136,.25); animation: pulse 1.4s ease infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,77,136,.28);} 70% { box-shadow: 0 0 0 10px rgba(255,77,136,0);} 100% { box-shadow: 0 0 0 0 rgba(255,77,136,0);} }
 
 /* Guestbook */
 .guest-form { max-width: 720px; margin: 0 auto 12px; display: grid; grid-template-columns: 1fr auto; gap: 8px; }
