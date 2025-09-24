@@ -1,4 +1,33 @@
 (function() {
+  // Password gate
+  const GATE_KEY = 'gift_unlocked';
+  const gate = document.getElementById('gate');
+  const gateForm = document.getElementById('gateForm');
+  const gateInput = document.getElementById('gateInput');
+  function unlock() {
+    if (gate) gate.style.display = 'none';
+    localStorage.setItem(GATE_KEY, '1');
+    document.body.style.overflow = '';
+  }
+  if (localStorage.getItem(GATE_KEY) === '1') {
+    if (gate) gate.style.display = 'none';
+  } else if (gate) {
+    document.body.style.overflow = 'hidden';
+    gate.style.display = 'grid';
+    setTimeout(() => gateInput && gateInput.focus(), 50);
+  }
+  if (gateForm) {
+    gateForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val = (gateInput?.value || '').trim();
+      if (val === 'Да это я') {
+        unlock();
+      } else {
+        gateInput.classList.add('shake');
+        setTimeout(() => gateInput.classList.remove('shake'), 400);
+      }
+    });
+  }
   // Simple navigation between sections
   function showSection(id) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('section--active'));

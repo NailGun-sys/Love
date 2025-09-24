@@ -204,6 +204,20 @@
     <!-- Floating Hearts -->
     <div class="hearts" aria-hidden="true"></div>
 
+    <!-- Password Gate -->
+    <div id="gate" class="gate" aria-modal="true" role="dialog" aria-labelledby="gateTitle" aria-describedby="gateDesc">
+        <div class="gate__card">
+            <div class="modal__emoji">🔒</div>
+            <h3 id="gateTitle">Небольшой секрет</h3>
+            <p id="gateDesc">Введи пароль, чтобы открыть сюрприз</p>
+            <form id="gateForm">
+                <input id="gateInput" class="gate__input" type="password" placeholder="Пароль" autocomplete="off" />
+                <button class="btn btn--primary" type="submit">Открыть</button>
+            </form>
+            <p class="gate__hint">Подсказка: это фраза, которую скажешь ты</p>
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
     <script src="js/memory.js"></script>
     <script src="js/petalCatch.js"></script>

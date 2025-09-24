@@ -157,6 +157,16 @@ body {
   .memory-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
+/* small effect for wrong password */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+.shake { animation: shake .35s ease; }
+
 /* New content sections */
 .timeline { list-style: none; margin: 0 auto; padding: 0; max-width: 760px; display: grid; gap: 14px; }
 .timeline li { display: grid; grid-template-columns: 40px 1fr; gap: 12px; align-items: start; }
@@ -175,6 +185,12 @@ body {
 
 .checklist { max-width: 520px; margin: 0 auto; background: #fff; border-radius: 14px; box-shadow: var(--shadow); padding: 12px 16px; }
 .checklist li { margin: 8px 0; }
+
+/* Gate */
+.gate { position: fixed; inset: 0; display: grid; place-items: center; background: radial-gradient(800px 600px at 30% -10%, rgba(255,133,170,.25), transparent), rgba(255,240,246,.9); backdrop-filter: blur(6px); z-index: 50; }
+.gate__card { width: min(520px, 92vw); background: #fff; border-radius: 16px; box-shadow: var(--shadow); padding: 20px; text-align: center; }
+.gate__input { width: 100%; padding: 12px 14px; border: 2px solid #ffd0e0; border-radius: 12px; margin: 8px 0 12px; font-size: 16px; }
+.gate__hint { color: var(--sub); font-size: 13px; margin: 8px 0 0; }
 
 
 
