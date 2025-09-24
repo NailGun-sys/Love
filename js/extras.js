@@ -29,6 +29,7 @@
     }
     saveAlbum(); renderAlbum(); e.target.value='';
   });
+  // Support explicit upload button if needed in future; auto-add on select is kept
   albumClear && albumClear.addEventListener('click', ()=>{ if(confirm('Очистить альбом?')){ photos=[]; saveAlbum(); renderAlbum(); }});
 
   // ACHIEVEMENTS

@@ -130,7 +130,7 @@
   let audio;
   function ensureAudio(){
     if (!audio) {
-      audio = new Audio('assets/music.mp3');
+      audio = new Audio('assets/Joe Hisaishi - Merry-Go-Round.mp3');
       audio.loop = true;
       audio.volume = 0.35;
     }
