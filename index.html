@@ -19,8 +19,8 @@
             <button class="nav__btn" data-target="#gallery">Наш милый уголок</button>
             <button class="nav__btn" data-target="#story">История нас</button>
             <button class="nav__btn" data-target="#favorites">Любимые вещи</button>
-            <button class="nav__btn" data-target="#playlist">Плейлист</button>
-            <button class="nav__btn" data-target="#promises">Обещаю</button>
+            <button class="nav__btn" data-target="#harvest">Урожай</button>
+            <button class="nav__btn" data-target="#fishing">Рыбалка</button>
         </nav>
     </header>
 
@@ -29,7 +29,7 @@
         <section id="home" class="section section--active">
             <div class="hero">
                 <h1 class="hero__title">Наш уютный пиксельный мир</h1>
-                <p class="hero__subtitle" id="rotatingQuote">Ферма любви в стиле Stardew: цветы, игры и тёплые моменты</p>
+                <p class="hero__subtitle" id="rotatingQuote">Ферма любви в стиле Stardew: цветы, игры и теплые моменты</p>
                 <div class="hero__actions">
                     <button class="btn btn--primary" data-target="#memory">Играть в пары</button>
                     <button class="btn" data-target="#petal">Ловить лепестки</button>
@@ -133,7 +133,7 @@
                     <span class="timeline__dot">🎲</span>
                     <div class="timeline__card">
                         <h4>Вечер настолок</h4>
-                        <p>Миплы, кубики и наши улыбки — идеальное сочетание.</p>
+                        <p>Миплы, кубики и наши улыбки - идеальное сочетание.</p>
                     </div>
                 </li>
             </ol>
@@ -148,7 +148,7 @@
                 <article class="cardx">
                     <img class="pixel" src="assets/pixel-book.svg" alt="Книга">
                     <h4>Книги</h4>
-                    <p>Читать вместе — это как путешествовать вдвоём.</p>
+                    <p>Читать вместе - это как путешествовать вдвоем.</p>
                 </article>
                 <article class="cardx">
                     <img class="pixel" src="assets/pixel-dice.svg" alt="Кубики">
@@ -163,29 +163,29 @@
             </div>
         </section>
 
-        <!-- Playlist -->
-        <section id="playlist" class="section">
+        <!-- Stardew Mini-Game: Harvest -->
+        <section id="harvest" class="section">
             <div class="section__head">
-                <h2>Плейлист для нас</h2>
+                <h2>Собери урожай</h2>
+                <div class="controls"><button class="btn" id="harvestRestart">Заново</button> <span class="stat">Счёт: <b id="harvestScore">0</b></span></div>
             </div>
-            <ul class="playlist">
-                <li>💗 <a href="https://www.youtube.com/results?search_query=love+song" target="_blank" rel="noopener">Love song — откроется в новой вкладке</a></li>
-                <li>🌙 <a href="https://www.youtube.com/results?search_query=lofi+romance" target="_blank" rel="noopener">Lofi romance</a></li>
-                <li>✨ <a href="https://www.youtube.com/results?search_query=romantic+instrumental" target="_blank" rel="noopener">Romantic instrumental</a></li>
-            </ul>
+            <div id="harvestGrid" class="harvest-grid" aria-label="Поле урожая"></div>
+            <p class="hint">Нажимай на грядки. Саженец вырастет через пару секунд - успей собрать!</p>
         </section>
 
-        <!-- Promises Checklist -->
-        <section id="promises" class="section">
+        <!-- Stardew Mini-Game: Fishing -->
+        <section id="fishing" class="section">
             <div class="section__head">
-                <h2>Обещаю</h2>
+                <h2>Рыбалка</h2>
+                <div class="controls"><button class="btn" id="fishRestart">Заново</button> <span class="stat">Улов: <b id="fishScore">0</b></span></div>
             </div>
-            <ul class="checklist" id="promiseList">
-                <li><label><input type="checkbox" data-key="hug"> Дарить объятия каждый день</label></li>
-                <li><label><input type="checkbox" data-key="listen"> Слушать и слышать тебя</label></li>
-                <li><label><input type="checkbox" data-key="date"> Устраивать уютные свидания</label></li>
-                <li><label><input type="checkbox" data-key="support"> Поддерживать во всём</label></li>
-            </ul>
+            <div class="fishing">
+                <div class="bar" id="fishBar">
+                    <div class="zone" id="fishZone"></div>
+                    <div class="marker" id="fishMarker"></div>
+                </div>
+                <p class="hint">Тапни/нажми пробел, когда маркер зайдет в золотую зону.</p>
+            </div>
         </section>
     </main>
 
@@ -204,7 +204,7 @@
         <form method="dialog" class="modal__content">
             <div class="modal__emoji">✉️</div>
             <h3>Секретное письмо</h3>
-            <p>Каждый день рядом с тобой — подарок. Люблю твою улыбку, твои
+            <p>Каждый день рядом с тобой - подарок. Люблю твою улыбку, твои
             смешные фразы и то, как ты согреваешь мир вокруг. Спасибо,
             что делаешь меня счастливее.</p>
             <button class="btn btn--primary" aria-label="Закрыть">💌</button>
@@ -231,6 +231,8 @@
     <script src="js/main.js"></script>
     <script src="js/memory.js"></script>
     <script src="js/petalCatch.js"></script>
+    <script src="js/harvest.js"></script>
+    <script src="js/fishing.js"></script>
     <script>
         // Open modal after small delay on first visit
         window.addEventListener('load', () => {

@@ -195,6 +195,18 @@ body {
 .checklist { max-width: 520px; margin: 0 auto; background: #fff; border-radius: 14px; box-shadow: var(--shadow); padding: 12px 16px; }
 .checklist li { margin: 8px 0; }
 
+/* Harvest grid */
+.harvest-grid { max-width: 420px; margin: 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.plot { aspect-ratio: 1/1; background: #ffe3ec; border-radius: 8px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+.plot .sprout, .plot .crop { position: absolute; inset: 0; display: grid; place-items: center; font-size: 24px; }
+.plot .sprout { opacity: .8; }
+
+/* Fishing */
+.fishing { max-width: 420px; margin: 0 auto; }
+.bar { position: relative; height: 46px; background: #fff; border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+.zone { position: absolute; top: 6px; bottom: 6px; width: 70px; background: rgba(255, 205, 0, .25); border: 2px solid #ffcd00; border-radius: 10px; }
+.marker { position: absolute; top: 0; bottom: 0; width: 4px; background: var(--rose); box-shadow: 0 0 0 2px rgba(255,77,136,.2); }
+
 /* Gate */
 .gate { position: fixed; inset: 0; display: grid; place-items: center; background: radial-gradient(800px 600px at 30% -10%, rgba(255,133,170,.25), transparent), rgba(255,240,246,.9); backdrop-filter: blur(6px); z-index: 50; }
 .gate__card { width: min(520px, 92vw); background: #fff; border-radius: 16px; box-shadow: var(--shadow); padding: 20px; text-align: center; }
