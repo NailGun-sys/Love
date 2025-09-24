@@ -10,6 +10,14 @@
   const albumImport = document.getElementById('albumImport');
   const ALBUM_KEY = 'album_v1';
   let photos = JSON.parse(localStorage.getItem(ALBUM_KEY) || '[]');
+  // Preload from assets/album/* if present and local album is empty
+  const DEFAULTS = [
+    // Add file names here if folder exists on hosting
+  ];
+  if (photos.length === 0 && DEFAULTS.length) {
+    photos = DEFAULTS.map(n => 'assets/album/' + n);
+    saveAlbum();
+  }
   function renderAlbum(){
     if (!albumGrid) return;
     albumGrid.innerHTML='';
