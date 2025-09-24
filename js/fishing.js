@@ -72,6 +72,16 @@
     }
   });
   bar && bar.addEventListener('pointerdown', tap);
+  // Allow tap/click anywhere on screen to count as a tap during fishing
+  window.addEventListener('pointerdown', (e) => {
+    // Avoid double firing when clicking on the bar (it already handles tap)
+    if (e.target && (e.target.id === 'fishBar' || e.target.closest && e.target.closest('#fishBar'))) return;
+    // Only when fishing section is visible
+    const section = document.getElementById('fishing');
+    if (!section || !section.classList.contains('section--active')) return;
+    if (isTypingOrOverlay()) return;
+    tap();
+  });
   window.addEventListener('resize', layout);
 
   // init when visible
