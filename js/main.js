@@ -61,7 +61,7 @@
 
   // Animated flowers field on landing
   const flowersRoot = document.querySelector('.flowers');
-  const flowerEmojis = ['🌸','🌷','💮','🌺','🌼','🌻'];
+  const flowerEmojis = ['🌸','🌷','💮','🌺','🌼','🌻','🌹','🥀','🪷','🌾'];
   function spawnFlower() {
     if (!flowersRoot) return;
     const el = document.createElement('div');
@@ -89,8 +89,10 @@
     if (!heartsRoot) return;
     const el = document.createElement('div');
     el.className = 'heart';
-    el.textContent = Math.random() > .5 ? '💗' : '💖';
+    const heartChoices = ['💗','💖','💕','💓','💞','💘','❤️','🧡','💜'];
+    el.textContent = heartChoices[Math.floor(Math.random()*heartChoices.length)];
     el.style.left = (50 + (Math.random()*40-20)) + 'vw';
+    el.style.bottom = '0px';
     el.style.setProperty('--s', (12 + Math.random()*16) + 'px');
     heartsRoot.appendChild(el);
     setTimeout(() => el.remove(), 6000);
@@ -148,7 +150,13 @@
   playMusicBtn && playMusicBtn.addEventListener('click', () => playMusic());
   volume && volume.addEventListener('input', () => { ensureAudio(); audio.volume = Number(volume.value || '0.35'); });
 
-  // music will start only by explicit user action ("тык" or 🔈 button)
+  // Try autoplay when unlocked/loaded with user gesture fallbacks
+  window.addEventListener('unlocked', () => { setTimeout(playMusic, 200); });
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) setTimeout(playMusic, 200); });
+  window.addEventListener('load', () => {
+    // attempt autoplay after a short delay; if blocked, it will be allowed after first tap
+    setTimeout(() => playMusic(), 800);
+  });
 
   // Secret letter dialog
   const openLetterBtn = document.getElementById('openLetter');

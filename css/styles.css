@@ -142,7 +142,7 @@ body {
 .modal__emoji { font-size: 40px; margin-bottom: 8px; }
 
 /* Floating hearts */
-.hearts { position: fixed; left: 0; right: 0; bottom: 10px; pointer-events: none; display: grid; place-items: center; }
+.hearts { position: fixed; left: 0; right: 0; bottom: 0; pointer-events: none; display: grid; place-items: center; }
 .heart { position: absolute; font-size: var(--s, 14px); animation: pop 6s linear infinite; opacity: .8; }
 @keyframes pop {
   0% { transform: translateY(0) scale(.8); opacity: 0; }
@@ -161,7 +161,8 @@ body {
 .sticker:nth-child(4) { right: 16%; bottom: 22%; }
 
 .pixel-gallery { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; }
-.pixel-card { background: #fff; border-radius: 14px; box-shadow: var(--shadow); padding: 14px; text-align: center; }
+.pixel-card { background: #fff; border-radius: 14px; box-shadow: var(--shadow); padding: 14px; text-align: center; display:flex; flex-direction:column; align-items:center; }
+.pixel-gallery .pixel { width: 100%; height: auto; max-width: 160px; }
 .pixel-card figcaption { margin-top: 8px; color: var(--sub); font-size: 14px; }
 
 /* Responsive */

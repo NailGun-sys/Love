@@ -6,6 +6,8 @@
   const albumGrid = document.getElementById('albumGrid');
   const albumFile = document.getElementById('albumFile');
   const albumClear = document.getElementById('albumClear');
+  const albumExport = document.getElementById('albumExport');
+  const albumImport = document.getElementById('albumImport');
   const ALBUM_KEY = 'album_v1';
   let photos = JSON.parse(localStorage.getItem(ALBUM_KEY) || '[]');
   function renderAlbum(){
@@ -34,6 +36,38 @@
   albumUpload && albumUpload.addEventListener('click', ()=>{ albumFile && albumFile.files && handleFiles({ target: albumFile }); });
   // Support explicit upload button if needed in future; auto-add on select is kept
   albumClear && albumClear.addEventListener('click', ()=>{ if(confirm('Очистить альбом?')){ photos=[]; saveAlbum(); renderAlbum(); }});
+
+  // Export / Import to share across devices
+  albumExport && albumExport.addEventListener('click', () => {
+    try {
+      const blob = new Blob([JSON.stringify({ photos }, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'pixel-album.json'; a.click();
+      setTimeout(()=>URL.revokeObjectURL(url), 1500);
+    } catch(_) {}
+  });
+  albumImport && albumImport.addEventListener('click', async () => {
+    const inp = document.createElement('input');
+    inp.type = 'file'; inp.accept = 'application/json';
+    inp.onchange = async (e) => {
+      const f = e.target.files && e.target.files[0]; if (!f) return;
+      try {
+        const text = await f.text();
+        const data = JSON.parse(text);
+        if (Array.isArray(data.photos)) {
+          photos = data.photos.filter(x => typeof x === 'string');
+          saveAlbum(); renderAlbum();
+          alert('Альбом импортирован!');
+        } else {
+          alert('Файл не похож на альбом.');
+        }
+      } catch(err) {
+        alert('Не удалось импортировать файл.');
+      }
+    };
+    inp.click();
+  });
 
   // ACHIEVEMENTS
   const questList = document.getElementById('questList');
