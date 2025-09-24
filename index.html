@@ -11,7 +11,7 @@
 </head>
 <body>
     <header class="site-header">
-        <div class="logo">для <span>тебя</span> ♡</div>
+        <div class="logo">Для <span>Влады</span> ♡</div>
         <nav class="nav">
             <button class="nav__btn" data-target="#home">Главная</button>
             
@@ -30,13 +30,14 @@
         <section id="home" class="section section--active">
             <div class="hero">
                 <h1 class="hero__title">Наш уютный пиксельный мир</h1>
-                <p class="hero__subtitle" id="rotatingQuote">Ферма любви в стиле Stardew: цветы, игры и теплые моменты</p>
+                <p class="hero__subtitle" id="rotatingQuote">Теплые моменты</p>
                 <div class="hero__actions">
-                    <button class="btn btn--primary" data-target="#memory">Играть в пары</button>
-                    <button class="btn" data-target="#petal">Ловить лепестки</button>
+                    <button class="btn btn--primary" data-target="#games">Играть в игры</button>
                     <button class="btn" id="openLetter">Секретное письмо ✉️</button>
                     <button class="btn" id="spawnHearts">Ещё сердечки</button>
                     <button class="btn" id="spawnFlowers">Больше цветочков</button>
+                    <button class="btn" id="playMusicBtn">тык</button>
+                    <input id="volume" type="range" min="0" max="1" step="0.01" value="0.35" style="vertical-align:middle;width:120px"/>
                 </div>
                 <div class="farm-strip" aria-hidden="true">
                     <img class="tile" src="assets/stardew-turnip.svg" alt="">
@@ -53,15 +54,7 @@
 
             <!-- Animated Flowers Field -->
             <div class="flowers" aria-hidden="true"></div>
-            <!-- Pixel Stickers -->
-            <div class="stickers" aria-hidden="true">
-                <img class="sticker pixel" src="assets/pixel-book.svg" alt="">
-                <img class="sticker pixel" src="assets/pixel-dice.svg" alt="">
-                <img class="sticker pixel pixel--lg" src="assets/pixel-heart.svg" alt="">
-                <img class="sticker pixel" src="assets/pixel-meeple.svg" alt="">
-                <img class="sticker pixel" src="assets/stardew-turnip.svg" alt="">
-                <img class="sticker pixel" src="assets/stardew-star.svg" alt="">
-            </div>
+            
         </section>
 
         
@@ -72,6 +65,7 @@
                 <h2>Пиксельный альбом</h2>
                 <div class="controls">
                     <input type="file" id="albumFile" accept="image/*" multiple class="guest-input" />
+                    <button class="btn" id="albumUpload">Загрузить</button>
                     <button class="btn" id="albumClear">Очистить</button>
                 </div>
             </div>

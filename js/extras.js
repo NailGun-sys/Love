@@ -19,7 +19,7 @@
     });
   }
   function saveAlbum(){ localStorage.setItem(ALBUM_KEY, JSON.stringify(photos)); }
-  albumFile && albumFile.addEventListener('change', async (e)=>{
+  async function handleFiles(e){
     const files = Array.from(e.target.files || []);
     for (const f of files) {
       try {
@@ -28,7 +28,10 @@
       } catch(_) {}
     }
     saveAlbum(); renderAlbum(); e.target.value='';
-  });
+  }
+  albumFile && albumFile.addEventListener('change', handleFiles);
+  const albumUpload = document.getElementById('albumUpload');
+  albumUpload && albumUpload.addEventListener('click', ()=>{ albumFile && albumFile.files && handleFiles({ target: albumFile }); });
   // Support explicit upload button if needed in future; auto-add on select is kept
   albumClear && albumClear.addEventListener('click', ()=>{ if(confirm('Очистить альбом?')){ photos=[]; saveAlbum(); renderAlbum(); }});
 

@@ -121,7 +121,7 @@
       for (let i=0;i<6;i++) setTimeout(spawnHeart, i*120);
     }
     if (t.id === 'spawnFlowers') {
-      for (let i=0;i<6;i++) setTimeout(spawnFlower, i*120);
+      for (let i=0;i<20;i++) setTimeout(spawnFlower, i*80);
     }
   });
 
@@ -139,6 +139,10 @@
   function playMusic(){ ensureAudio().play().catch(()=>{}); musicToggle && (musicToggle.textContent='🔊'); }
   function pauseMusic(){ if(audio){ audio.pause(); } musicToggle && (musicToggle.textContent='🔈'); }
   musicToggle && musicToggle.addEventListener('click', ()=>{ if (audio && !audio.paused) pauseMusic(); else playMusic(); });
+  const playMusicBtn = document.getElementById('playMusicBtn');
+  const volume = document.getElementById('volume');
+  playMusicBtn && playMusicBtn.addEventListener('click', () => playMusic());
+  volume && volume.addEventListener('input', () => { ensureAudio(); audio.volume = Number(volume.value || '0.35'); });
 
   // start music after unlock automatically
   window.addEventListener('unlocked', () => { playMusic(); });
