@@ -59,12 +59,15 @@
     }
   });
 
-  // Double-tap anywhere to open Admin (within 350ms, small movement)
+  // Double-tap in bottom-right region to open Admin (within 350ms, small movement)
   (function(){
     let lastTap = 0; let lastX = 0; let lastY = 0;
     window.addEventListener('pointerdown', (e) => {
       const active = document.activeElement;
       if (active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable)) return;
+      const w = window.innerWidth, h = window.innerHeight;
+      const inBR = (e.clientX >= w * 0.75) && (e.clientY >= h * 0.75); // bottom-right quarter
+      if (!inBR) { lastTap = 0; return; }
       const now = Date.now();
       const dt = now - lastTap;
       const dx = e.clientX - lastX; const dy = e.clientY - lastY;
