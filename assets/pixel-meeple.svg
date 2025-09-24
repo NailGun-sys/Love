@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" shape-rendering="crispEdges">
+  <rect width="64" height="64" fill="#ffffff"/>
+  <!-- simple pixel meeple -->
+  <rect x="20" y="10" width="24" height="10" fill="#ff85aa"/>
+  <rect x="14" y="20" width="36" height="10" fill="#ff85aa"/>
+  <rect x="10" y="30" width="44" height="10" fill="#ff85aa"/>
+  <rect x="10" y="40" width="16" height="12" fill="#ff85aa"/>
+  <rect x="38" y="40" width="16" height="12" fill="#ff85aa"/>
+  <!-- eyes -->
+  <rect x="26" y="22" width="4" height="4" fill="#39182d"/>
+  <rect x="36" y="22" width="4" height="4" fill="#39182d"/>
+</svg>
+
