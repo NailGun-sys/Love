@@ -119,20 +119,7 @@
   }
 
   // Daily message
-  const daily = document.getElementById('dailyMessage');
-  if (daily) {
-    const dailyTexts = [
-      'Сегодня я думаю о тебе',
-      'Хорошего дня, любимая!',
-      'Ты делаешь мир теплее',
-      'Ты мое вдохновение',
-      'Ты моё самое нежное чудо',
-    ];
-    const d = new Date();
-    const idx = (d.getFullYear()*372 + (d.getMonth()+1)*31 + d.getDate()) % dailyTexts.length;
-    const stored = localStorage.getItem('dailyMessageCustom');
-    daily.textContent = stored && stored.trim() ? stored : dailyTexts[idx];
-  }
+  // Daily short block on home removed per request
 
   // Daily page render and admin wiring
   const dailyFull = document.getElementById('dailyMessageFull');
