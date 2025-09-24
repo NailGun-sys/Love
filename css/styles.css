@@ -217,7 +217,7 @@ body {
 .checklist li { margin: 8px 0; }
 
 /* Daily message card */
-.daily-wrap { display: grid; place-items: center; }
+.daily-wrap { display: grid; place-items: center; min-height: 60vh; }
 .daily-card { max-width: 720px; margin: 0 auto; background: linear-gradient(180deg, #fff, #fff6fa); border-radius: 16px; box-shadow: var(--shadow); padding: 18px 20px; text-align: center; border: 2px solid #ffd3e2; }
 .daily-card h4 { margin: 6px 0 8px; font-family: 'Playfair Display', serif; }
 .daily-card .daily-text { font-size: clamp(18px, 3.8vw, 28px); line-height: 1.35; margin: 0; }
