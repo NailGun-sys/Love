@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для моей любимой</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="logo">для <span>тебя</span> ♡</div>
+        <nav class="nav">
+            <button class="nav__btn" data-target="#home">Главная</button>
+            <button class="nav__btn" data-target="#memory">Пары</button>
+            <button class="nav__btn" data-target="#petal">Лови лепестки</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Landing -->
+        <section id="home" class="section section--active">
+            <div class="hero">
+                <h1 class="hero__title">Ты — моё счастье</h1>
+                <p class="hero__subtitle">Этот маленький мир я сделал для тебя. Открой его ♥</p>
+                <div class="hero__actions">
+                    <button class="btn btn--primary" data-target="#memory">Играть в пары</button>
+                    <button class="btn" data-target="#petal">Ловить лепестки</button>
+                </div>
+            </div>
+
+            <!-- Animated Flowers Field -->
+            <div class="flowers" aria-hidden="true"></div>
+        </section>
+
+        <!-- Memory Game -->
+        <section id="memory" class="section">
+            <div class="section__head">
+                <h2>Цветочные пары</h2>
+                <div class="controls">
+                    <button class="btn" id="restartMemory">Заново</button>
+                    <span class="stat">Ходы: <b id="moves">0</b></span>
+                    <span class="stat">Совпадения: <b id="matches">0</b>/8</span>
+                </div>
+            </div>
+            <div id="memoryGrid" class="memory-grid" aria-label="Игровое поле пар"></div>
+        </section>
+
+        <!-- Petal Catch Game -->
+        <section id="petal" class="section">
+            <div class="section__head">
+                <h2>Лови лепестки</h2>
+                <div class="controls">
+                    <button class="btn" id="restartPetal">Заново</button>
+                    <span class="stat">Счёт: <b id="score">0</b></span>
+                    <span class="stat">Лучший: <b id="best">0</b></span>
+                </div>
+            </div>
+            <canvas id="petalCanvas" width="360" height="560" aria-label="Игра Лови лепестки"></canvas>
+            <p class="hint">Двигай корзинку влево/вправо (клавиши или пальцем), лови розовые лепестки!</p>
+        </section>
+    </main>
+
+    <!-- Sweet Modal -->
+    <dialog id="loveModal" class="modal">
+        <form method="dialog" class="modal__content">
+            <div class="modal__emoji">💖</div>
+            <h3>Я люблю тебя</h3>
+            <p>Спасибо, что ты есть. Ты самая прекрасная!</p>
+            <button class="btn btn--primary">Спасибо</button>
+        </form>
+    </dialog>
+
+    <!-- Floating Hearts -->
+    <div class="hearts" aria-hidden="true"></div>
+
+    <script src="js/main.js"></script>
+    <script src="js/memory.js"></script>
+    <script src="js/petalCatch.js"></script>
+    <script>
+        // Open modal after small delay on first visit
+        window.addEventListener('load', () => {
+            if (!localStorage.getItem('loveModalShown')) {
+                setTimeout(() => {
+                    const dlg = document.getElementById('loveModal');
+                    try { dlg.showModal(); } catch (e) { dlg.setAttribute('open', ''); }
+                    localStorage.setItem('loveModalShown', '1');
+                }, 1200);
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
