@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" shape-rendering="crispEdges">
+  <rect width="32" height="32" fill="#ffffff"/>
+  <!-- simple pixel turnip -->
+  <rect x="14" y="6" width="4" height="4" fill="#79c267"/>
+  <rect x="12" y="8" width="8" height="4" fill="#79c267"/>
+  <rect x="10" y="12" width="12" height="10" fill="#ffe4ec"/>
+  <rect x="10" y="22" width="12" height="4" fill="#ffbdd2"/>
+  <rect x="12" y="26" width="8" height="2" fill="#e492ac"/>
+</svg>
+
