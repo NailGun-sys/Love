@@ -91,7 +91,7 @@
     el.className = 'heart';
     const heartChoices = ['💗','💖','💕','💓','💞','💘','❤️','🧡','💜'];
     el.textContent = heartChoices[Math.floor(Math.random()*heartChoices.length)];
-    el.style.left = (50 + (Math.random()*40-20)) + 'vw';
+    el.style.left = (Math.random()*100) + 'vw';
     el.style.bottom = '0px';
     el.style.setProperty('--s', (12 + Math.random()*16) + 'px');
     heartsRoot.appendChild(el);
@@ -108,7 +108,6 @@
     'Спасибо что ты зажгла во мне тягу ко чтению',
     'Ты прекрасная',
     'Я люблю тебя',
-    '',
   ];
   const quoteEl = document.getElementById('rotatingQuote');
   if (quoteEl) {
@@ -117,6 +116,21 @@
       qi = (qi + 1) % quotes.length;
       quoteEl.textContent = quotes[qi];
     }, 3500);
+  }
+
+  // Daily message
+  const daily = document.getElementById('dailyMessage');
+  if (daily) {
+    const dailyTexts = [
+      'Сегодня я думаю о тебе',
+      'Хорошего дня, любимая!',
+      'Ты делаешь мир теплее',
+      'Ты мое вдохновение',
+      'Ты — моё самое нежное чудо',
+    ];
+    const d = new Date();
+    const idx = (d.getFullYear()*372 + (d.getMonth()+1)*31 + d.getDate()) % dailyTexts.length;
+    daily.textContent = dailyTexts[idx];
   }
 
   // Hero playful buttons
