@@ -234,5 +234,31 @@ body {
 .reveal { animation: reveal .8s ease both; }
 @keyframes reveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
+/* Map */
+.map-grid { max-width: 720px; margin: 0 auto; display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; background: #ffe9f2; padding: 8px; border-radius: 12px; box-shadow: var(--shadow); }
+.cell { aspect-ratio: 1/1; background: #fff; border: 1px solid #ffd3e2; position: relative; }
+.pin { position: absolute; inset: 0; display: grid; place-items: center; font-size: 18px; }
+
+/* Album */
+.album-grid { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+.photo { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); }
+.photo img { width: 100%; display: block; image-rendering: pixelated; }
+
+/* Quests */
+.quests { max-width: 720px; margin: 0 auto; background: #fff; border-radius: 14px; box-shadow: var(--shadow); padding: 12px 16px; list-style: none; }
+.quests li { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; gap: 12px; }
+.badge { opacity: .35; filter: grayscale(1); transition: .2s; }
+.badge.active { opacity: 1; filter: none; }
+
+/* Guestbook */
+.guest-form { max-width: 720px; margin: 0 auto 12px; display: grid; grid-template-columns: 1fr 2fr auto; gap: 8px; }
+.guest-input { border: 2px solid #ffd0e0; border-radius: 10px; padding: 10px 12px; }
+.guest-list { max-width: 720px; margin: 0 auto; list-style: none; padding: 0; display: grid; gap: 8px; }
+.guest-list li { background: #fff; border-radius: 12px; padding: 10px 12px; box-shadow: var(--shadow); }
+
+@media (max-width: 600px) {
+  .guest-form { grid-template-columns: 1fr; }
+}
+
 
 
