@@ -9,7 +9,8 @@
     function resize(){ W = bg.width = window.innerWidth; H = bg.height = window.innerHeight; }
     resize(); window.addEventListener('resize', resize);
     window.addEventListener('pointermove', (e)=>{ pointer.x = e.clientX; pointer.y = e.clientY; });
-    function loop(){
+    let starTimer = 0;
+    function loop(ts){
       ctx.clearRect(0,0,W,H);
       // soft gradient background
       const g = ctx.createLinearGradient(0,0,W,H);
@@ -25,6 +26,22 @@
         if (d2 < 120*120) { p.vx += (dx/Math.max(80,Math.sqrt(d2))) * 0.0008; p.vy += (dy/Math.max(80,Math.sqrt(d2))) * 0.0008; }
         ctx.beginPath(); ctx.fillStyle = 'rgba(255, 133, 170, .12)'; ctx.arc(px, py, p.r, 0, Math.PI*2); ctx.fill();
       });
+      // shooting stars
+      starTimer += 1;
+      if (starTimer > 120) { // roughly every 2s
+        starTimer = 0;
+        const sx = Math.random()*W*0.6 + W*0.2; const sy = Math.random()*H*0.2 + 20;
+        const len = 160 + Math.random()*120;
+        let t = 0; const dur = 40;
+        (function trail(){
+          if (t>dur) return; t++;
+          ctx.save(); ctx.globalAlpha = (1 - t/dur) * .8;
+          ctx.strokeStyle = 'rgba(255, 133, 170, .8)'; ctx.lineWidth = 2;
+          ctx.beginPath(); ctx.moveTo(sx + t*4, sy + t*2); ctx.lineTo(sx + t*4 - len, sy + t*2 - len*0.4); ctx.stroke();
+          ctx.restore();
+          requestAnimationFrame(trail);
+        })();
+      }
       requestAnimationFrame(loop);
     }
     requestAnimationFrame(loop);
