@@ -17,14 +17,13 @@
             <button class="nav__btn" data-target="#memory">Пары</button>
             <button class="nav__btn" data-target="#petal">Лови лепестки</button>
             <button class="nav__btn" data-target="#gallery">Наш милый уголок</button>
-            <button class="nav__btn" data-target="#story">История нас</button>
-            <button class="nav__btn" data-target="#favorites">Любимые вещи</button>
             <button class="nav__btn" data-target="#harvest">Урожай</button>
             <button class="nav__btn" data-target="#fishing">Рыбалка</button>
             
             <button class="nav__btn" data-target="#album">Пиксельный альбом</button>
             <button class="nav__btn" data-target="#achievements">Достижения</button>
             <button class="nav__btn" data-target="#guestbook">Гостевая</button>
+            <button class="nav__btn" id="musicToggle" title="Музыка">🔊</button>
         </nav>
     </header>
 
@@ -48,6 +47,9 @@
                     <img class="tile" src="assets/stardew-star.svg" alt="">
                     <img class="tile" src="assets/stardew-turnip.svg" alt="">
                     <img class="tile" src="assets/stardew-star.svg" alt="">
+                </div>
+                <div style="margin-top:12px">
+                    <img src="assets/cat_piano_gif.gif" alt="котик у пианино" style="max-width:220px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.08)"/>
                 </div>
             </div>
 
@@ -154,59 +156,7 @@
                 </figure>
             </div>
         </section>
-        <!-- Story Timeline -->
-        <section id="story" class="section">
-            <div class="section__head">
-                <h2>История нас</h2>
-            </div>
-            <ol class="timeline">
-                <li>
-                    <span class="timeline__dot">💘</span>
-                    <div class="timeline__card">
-                        <h4>Наше знакомство</h4>
-                        <p>С этого момента мир стал чуть розовее.</p>
-                    </div>
-                </li>
-                <li>
-                    <span class="timeline__dot">📚</span>
-                    <div class="timeline__card">
-                        <h4>Первая совместная книга</h4>
-                        <p>Обсуждали главы и делились любимыми цитатами.</p>
-                    </div>
-                </li>
-                <li>
-                    <span class="timeline__dot">🎲</span>
-                    <div class="timeline__card">
-                        <h4>Вечер настолок</h4>
-                        <p>Миплы, кубики и наши улыбки - идеальное сочетание.</p>
-                    </div>
-                </li>
-            </ol>
-        </section>
-
-        <!-- Favorites Cards -->
-        <section id="favorites" class="section">
-            <div class="section__head">
-                <h2>Любимые вещи</h2>
-            </div>
-            <div class="cards">
-                <article class="cardx">
-                    <img class="pixel" src="assets/pixel-book.svg" alt="Книга">
-                    <h4>Книги</h4>
-                    <p>Читать вместе - это как путешествовать вдвоем.</p>
-                </article>
-                <article class="cardx">
-                    <img class="pixel" src="assets/pixel-dice.svg" alt="Кубики">
-                    <h4>Настольные игры</h4>
-                    <p>Командный дух и тёплые вечера с миплами.</p>
-                </article>
-                <article class="cardx">
-                    <img class="pixel" src="assets/pixel-heart.svg" alt="Сердце">
-                    <h4>Наши традиции</h4>
-                    <p>Маленькие ритуалы, которые делают день особенным.</p>
-                </article>
-            </div>
-        </section>
+        
 
         <!-- Stardew Mini-Game: Harvest -->
         <section id="harvest" class="section">

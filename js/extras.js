@@ -33,8 +33,8 @@
 
   // ACHIEVEMENTS
   const questList = document.getElementById('questList');
-  const QUEST_KEY = 'quests_v2';
-  let done = JSON.parse(localStorage.getItem(QUEST_KEY) || '{}');
+  const QUEST_KEY = 'quests_session_v1';
+  let done = {}; // session only
   function setBadge(key, val){ done[key]=val; localStorage.setItem(QUEST_KEY, JSON.stringify(done)); const b=document.querySelector(`[data-badge="${key}"]`); if (b) b.classList.toggle('active', !!val); }
   function renderQuests(){ if (!questList) return; ['petal20','petal50','harvest10','fish10'].forEach(k=> setBadge(k, done[k]===true)); }
 
@@ -46,9 +46,11 @@
   function renderGuest(){
     if (!guestList) return;
     guestList.innerHTML='';
-    notes.forEach(n => {
+    notes.forEach((n, idx) => {
       const li = document.createElement('li');
-      li.textContent = n.m;
+      const txt = document.createElement('span'); txt.textContent = n.m; li.appendChild(txt);
+      const del = document.createElement('button'); del.textContent = '✖'; del.style.border='none'; del.style.background='transparent'; del.style.cursor='pointer'; del.style.marginLeft='8px'; del.addEventListener('click', ()=>{ notes.splice(idx,1); localStorage.setItem(GUEST_KEY, JSON.stringify(notes)); renderGuest(); });
+      li.appendChild(del);
       guestList.appendChild(li);
     });
   }

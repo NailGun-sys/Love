@@ -8,6 +8,7 @@
     if (gate) gate.style.display = 'none';
     localStorage.setItem(GATE_KEY, '1');
     document.body.style.overflow = '';
+    window.dispatchEvent(new Event('unlocked'));
     // show welcome, then fade away
     const welcome = document.getElementById('welcome');
     if (welcome) {
@@ -114,14 +115,33 @@
 
   // Hero playful buttons
   document.addEventListener('click', (e) => {
-    const t = e.target;
-    if (t && t.id === 'spawnHearts') {
+    const t = e.target.closest('button');
+    if (!t) return;
+    if (t.id === 'spawnHearts') {
       for (let i=0;i<6;i++) setTimeout(spawnHeart, i*120);
     }
-    if (t && t.id === 'spawnFlowers') {
+    if (t.id === 'spawnFlowers') {
       for (let i=0;i<6;i++) setTimeout(spawnFlower, i*120);
     }
   });
+
+  // Music playback toggle
+  const musicToggle = document.getElementById('musicToggle');
+  let audio;
+  function ensureAudio(){
+    if (!audio) {
+      audio = new Audio('assets/music.mp3');
+      audio.loop = true;
+      audio.volume = 0.35;
+    }
+    return audio;
+  }
+  function playMusic(){ ensureAudio().play().catch(()=>{}); musicToggle && (musicToggle.textContent='🔊'); }
+  function pauseMusic(){ if(audio){ audio.pause(); } musicToggle && (musicToggle.textContent='🔈'); }
+  musicToggle && musicToggle.addEventListener('click', ()=>{ if (audio && !audio.paused) pauseMusic(); else playMusic(); });
+
+  // start music after unlock automatically
+  window.addEventListener('unlocked', () => { playMusic(); });
 
   // Secret letter dialog
   const openLetterBtn = document.getElementById('openLetter');
