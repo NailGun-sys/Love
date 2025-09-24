@@ -1,4 +1,34 @@
 (function() {
+  // Animated background: soft particles reacting to pointer
+  const bg = document.getElementById('bgCanvas');
+  if (bg) {
+    const ctx = bg.getContext('2d');
+    let W = 0, H = 0;
+    let pointer = { x: -9999, y: -9999 };
+    const particles = Array.from({ length: 48 }, () => ({ x: Math.random(), y: Math.random(), r: 8+Math.random()*10, vx: (Math.random()-.5)*.0008, vy: (Math.random()-.5)*.0008 }));
+    function resize(){ W = bg.width = window.innerWidth; H = bg.height = window.innerHeight; }
+    resize(); window.addEventListener('resize', resize);
+    window.addEventListener('pointermove', (e)=>{ pointer.x = e.clientX; pointer.y = e.clientY; });
+    function loop(){
+      ctx.clearRect(0,0,W,H);
+      // soft gradient background
+      const g = ctx.createLinearGradient(0,0,W,H);
+      g.addColorStop(0,'#fff5fa'); g.addColorStop(1,'#ffe9f2');
+      ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+      particles.forEach(p=>{
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > 1) p.vx *= -1;
+        if (p.y < 0 || p.y > 1) p.vy *= -1;
+        const px = p.x * W, py = p.y * H;
+        // repel from pointer
+        const dx = px - pointer.x, dy = py - pointer.y; const d2 = dx*dx + dy*dy;
+        if (d2 < 120*120) { p.vx += (dx/Math.max(80,Math.sqrt(d2))) * 0.0008; p.vy += (dy/Math.max(80,Math.sqrt(d2))) * 0.0008; }
+        ctx.beginPath(); ctx.fillStyle = 'rgba(255, 133, 170, .12)'; ctx.arc(px, py, p.r, 0, Math.PI*2); ctx.fill();
+      });
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  }
   // Password gate
   const GATE_KEY = 'gift_unlocked';
   const gate = document.getElementById('gate');
@@ -47,7 +77,11 @@
   function showSection(id) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('section--active'));
     const el = document.querySelector(id);
-    if (el) el.classList.add('section--active');
+    if (el) { el.classList.add('section--active');
+      // apply reveal to children entering view
+      const kids = el.querySelectorAll('.cardx, .pixel-card, .photo, .daily-card');
+      kids.forEach((k, i) => setTimeout(()=> k.classList.add('reveal'), i*40));
+    }
   }
 
   document.addEventListener('click', (e) => {
@@ -195,6 +229,21 @@
       for (let i=0;i<20;i++) setTimeout(spawnFlower, i*80);
     }
   });
+
+  // Parallax for farm tiles
+  (function(){
+    const strip = document.querySelector('.farm-strip');
+    if (!strip) return;
+    strip.style.perspective = '600px';
+    const tiles = Array.from(strip.querySelectorAll('.tile'));
+    window.addEventListener('pointermove', (e) => {
+      const cx = (e.clientX / window.innerWidth) - .5;
+      tiles.forEach((el, i) => {
+        const depth = (i%3 - 1) * 6; // -6,0,6
+        el.style.transform = `translateZ(${depth}px) translateX(${cx*depth}px)`;
+      });
+    });
+  })();
 
   // Music playback toggle
   const musicToggle = document.getElementById('musicToggle');

@@ -24,6 +24,10 @@ body {
   overflow-x: hidden;
 }
 
+/* Background canvas */
+#bgCanvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.site-header, main, .hearts { position: relative; z-index: 1; }
+
 /* Header */
 .site-header {
   position: sticky;
@@ -257,6 +261,7 @@ body {
 /* Content reveal */
 .reveal { animation: reveal .8s ease both; }
 @keyframes reveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.magic:hover { box-shadow: 0 12px 28px rgba(255,77,136,.28); transform: translateY(-2px); }
 
 /* Map */
 .map-grid { max-width: 720px; margin: 0 auto; display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; background: #ffe9f2; padding: 8px; border-radius: 12px; box-shadow: var(--shadow); }
