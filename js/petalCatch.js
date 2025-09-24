@@ -5,8 +5,8 @@
   const scoreEl = document.getElementById('score');
   const bestEl = document.getElementById('best');
 
-  const W = canvas.width;
-  const H = canvas.height;
+  let W = canvas.width;
+  let H = canvas.height;
 
   let petals = [];
   let basketX = W/2;
@@ -107,6 +107,22 @@
   canvas.addEventListener('pointermove', (e) => { if (e.buttons) setXFromClient(e.clientX); });
 
   restartBtn.addEventListener('click', () => { reset(); start(); });
+
+  // Responsive resize
+  function resizeCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    const scale = rect.width / W;
+    // Keep internal resolution proportional to width (baseline 360x560)
+    const baseW = 360, baseH = 560;
+    const newW = Math.max(240, Math.min(480, Math.round(rect.width)));
+    const newH = Math.round(newW * (baseH/baseW));
+    canvas.width = newW; canvas.height = newH; W = newW; H = newH;
+    basketX = Math.min(Math.max(40, basketX), W-40);
+  }
+  window.addEventListener('resize', resizeCanvas);
+  // On visibility of section we already reset/start; ensure size fits
+  const ro = new ResizeObserver(resizeCanvas);
+  ro.observe(canvas);
 
   // Start when section visible
   let initialized = false;
