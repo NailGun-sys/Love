@@ -91,7 +91,7 @@
   const QUEST_KEY = 'quests_session_v1';
   let done = {}; // session only
   function setBadge(key, val){ done[key]=val; localStorage.setItem(QUEST_KEY, JSON.stringify(done)); const b=document.querySelector(`[data-badge="${key}"]`); if (b) b.classList.toggle('active', !!val); }
-  function renderQuests(){ if (!questList) return; ['petal20','petal50','harvest10','fish10'].forEach(k=> setBadge(k, done[k]===true)); }
+  function renderQuests(){ if (!questList) return; ['petal10','petal20','petal35','petal50','petal75','harvest5','harvest10','harvest15','harvest20','harvest25','fish5','fish10','fish15','fish20','fish25'].forEach(k=> setBadge(k, done[k]===true)); }
 
   // GUESTBOOK
   const guestForm = document.getElementById('guestForm');
@@ -128,14 +128,27 @@
   // Listen to scores from games via custom events
   window.addEventListener('petal:score', (e)=>{
     const s = Number(e.detail||0);
+    if (s >= 10) setBadge('petal10', true);
     if (s >= 20) setBadge('petal20', true);
+    if (s >= 35) setBadge('petal35', true);
     if (s >= 50) setBadge('petal50', true);
+    if (s >= 75) setBadge('petal75', true);
   });
   window.addEventListener('harvest:score', (e)=>{
-    const s = Number(e.detail||0); if (s >= 10) setBadge('harvest10', true);
+    const s = Number(e.detail||0);
+    if (s >= 5) setBadge('harvest5', true);
+    if (s >= 10) setBadge('harvest10', true);
+    if (s >= 15) setBadge('harvest15', true);
+    if (s >= 20) setBadge('harvest20', true);
+    if (s >= 25) setBadge('harvest25', true);
   });
   window.addEventListener('fish:score', (e)=>{
-    const s = Number(e.detail||0); if (s >= 10) setBadge('fish10', true);
+    const s = Number(e.detail||0);
+    if (s >= 5) setBadge('fish5', true);
+    if (s >= 10) setBadge('fish10', true);
+    if (s >= 15) setBadge('fish15', true);
+    if (s >= 20) setBadge('fish20', true);
+    if (s >= 25) setBadge('fish25', true);
   });
 })();
 

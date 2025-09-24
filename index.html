@@ -29,7 +29,7 @@
         <!-- Landing -->
         <section id="home" class="section section--active">
             <div class="hero">
-                <h1 class="hero__title">Наш уютный пиксельный мир</h1>
+                <h1 class="hero__title">Наш уютный мир</h1>
                 <p class="hero__subtitle" id="rotatingQuote">Теплые моменты</p>
                 <div class="hero__actions">
                     <button class="btn btn--primary" data-target="#games">Играть в игры</button>
@@ -63,13 +63,7 @@
         <section id="album" class="section">
             <div class="section__head">
                 <h2>Наш альбом</h2>
-                <div class="controls">
-                    <input type="file" id="albumFile" accept="image/*" multiple class="guest-input" />
-                    <button class="btn" id="albumUpload">Загрузить</button>
-                    <button class="btn" id="albumClear">Очистить</button>
-                    <button class="btn" id="albumExport">Экспорт</button>
-                    <button class="btn" id="albumImport">Импорт</button>
-                </div>
+                <div class="controls" style="display:none"></div>
             </div>
             <div id="albumGrid" class="album-grid"></div>
         </section>
@@ -80,10 +74,23 @@
                 <h2>Достижения</h2>
             </div>
             <ul id="questList" class="quests">
+                <li><span>Лепестки: 10 очков</span><span class="badge" data-badge="petal10">💗</span></li>
                 <li><span>Лепестки: 20 очков</span><span class="badge" data-badge="petal20">💖</span></li>
+                <li><span>Лепестки: 35 очков</span><span class="badge" data-badge="petal35">💞</span></li>
                 <li><span>Лепестки: 50 очков</span><span class="badge" data-badge="petal50">🌟</span></li>
+                <li><span>Лепестки: 75 очков</span><span class="badge" data-badge="petal75">💘</span></li>
+
+                <li><span>Урожай: 5 сборов</span><span class="badge" data-badge="harvest5">🌱</span></li>
                 <li><span>Урожай: 10 сборов</span><span class="badge" data-badge="harvest10">🥕</span></li>
+                <li><span>Урожай: 15 сборов</span><span class="badge" data-badge="harvest15">🌾</span></li>
+                <li><span>Урожай: 20 сборов</span><span class="badge" data-badge="harvest20">🍅</span></li>
+                <li><span>Урожай: 25 сборов</span><span class="badge" data-badge="harvest25">🍆</span></li>
+
+                <li><span>Рыбалка: 5 попаданий</span><span class="badge" data-badge="fish5">🐟</span></li>
                 <li><span>Рыбалка: 10 попаданий</span><span class="badge" data-badge="fish10">🎣</span></li>
+                <li><span>Рыбалка: 15 попаданий</span><span class="badge" data-badge="fish15">🐠</span></li>
+                <li><span>Рыбалка: 20 попаданий</span><span class="badge" data-badge="fish20">🐡</span></li>
+                <li><span>Рыбалка: 25 попаданий</span><span class="badge" data-badge="fish25">🦈</span></li>
             </ul>
         </section>
 
@@ -146,7 +153,7 @@
             </div>
             <div class="cards" style="max-width:820px">
                 <article class="cardx"><h4>За твою улыбку</h4><p>Она мгновенно делает мой день светлее и тёплее</p></article>
-                <article class="cardx"><h4>За твоё чувство юмора</h4><p>Твои шутки всегда поднимают мне настроение, даже в самый пасмурный день</p></article>
+                <article class="cardx"><h4>За твоё чувство юмора</h4><p>Твои шутки всегда поднимают мне настроение</p></article>
                 <article class="cardx"><h4>За твою заботу</h4><p>Ты поддерживаешь меня я чувствую себя спокойно с тобой</p></article>
                 <article class="cardx"><h4>За то, что с тобой я могу быть собой</h4><p>Рядом с тобой легко и свободно, не нужно притворяться</p></article>
                 <article class="cardx"><h4>За наши уютные вечера</h4><p>Фильмы, обьятия и тишинаэти моменты остаются со мной надолго</p></article>
