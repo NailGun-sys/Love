@@ -21,7 +21,7 @@
             <button class="nav__btn" data-target="#favorites">Любимые вещи</button>
             <button class="nav__btn" data-target="#harvest">Урожай</button>
             <button class="nav__btn" data-target="#fishing">Рыбалка</button>
-            <button class="nav__btn" data-target="#map">Наши места</button>
+            
             <button class="nav__btn" data-target="#album">Пиксельный альбом</button>
             <button class="nav__btn" data-target="#achievements">Достижения</button>
             <button class="nav__btn" data-target="#guestbook">Гостевая</button>
@@ -64,25 +64,14 @@
             </div>
         </section>
 
-        <!-- Pixel Map: Our Places -->
-        <section id="map" class="section">
-            <div class="section__head">
-                <h2>Наши места</h2>
-                <div class="controls">
-                    <button class="btn" id="mapAdd">Добавить метку</button>
-                    <button class="btn" id="mapClear">Очистить</button>
-                </div>
-            </div>
-            <div id="mapGrid" class="map-grid" aria-label="Карта наших мест"></div>
-            <p class="hint">Тапни по клетке, чтобы поставить метку. Можно прикрепить описание и фото (URL).</p>
-        </section>
+        
 
         <!-- Pixel Photo Album -->
         <section id="album" class="section">
             <div class="section__head">
                 <h2>Пиксельный альбом</h2>
                 <div class="controls">
-                    <button class="btn" id="albumAdd">Добавить фото</button>
+                    <input type="file" id="albumFile" accept="image/*" multiple class="guest-input" />
                     <button class="btn" id="albumClear">Очистить</button>
                 </div>
             </div>
@@ -95,9 +84,10 @@
                 <h2>Достижения</h2>
             </div>
             <ul id="questList" class="quests">
-                <li><label><input type="checkbox" data-quest="wishes"> Загадай 10 желаний</label><span class="badge" data-badge="wishes">🌠</span></li>
-                <li><label><input type="checkbox" data-quest="harvest"> Собери урожай</label><span class="badge" data-badge="harvest">🥕</span></li>
-                <li><label><input type="checkbox" data-quest="letter"> Найди спрятанное письмо</label><span class="badge" data-badge="letter">💌</span></li>
+                <li><span>Лепестки: 20 очков</span><span class="badge" data-badge="petal20">💖</span></li>
+                <li><span>Лепестки: 50 очков</span><span class="badge" data-badge="petal50">🌟</span></li>
+                <li><span>Урожай: 10 сборов</span><span class="badge" data-badge="harvest10">🥕</span></li>
+                <li><span>Рыбалка: 10 попаданий</span><span class="badge" data-badge="fish10">🎣</span></li>
             </ul>
         </section>
 
@@ -107,7 +97,6 @@
                 <h2>Гостевая книга</h2>
             </div>
             <form id="guestForm" class="guest-form">
-                <input type="text" id="guestName" placeholder="Твоё имя" required class="guest-input" />
                 <input type="text" id="guestMsg" placeholder="Тёплые слова" required class="guest-input" />
                 <button class="btn btn--primary" type="submit">Оставить</button>
             </form>

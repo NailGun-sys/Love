@@ -51,6 +51,7 @@
     plot.dataset.state = 'empty';
     plot.innerHTML = '';
     score += 1; scoreEl.textContent = String(score);
+    window.dispatchEvent(new CustomEvent('harvest:score', { detail: score }));
   }
 
   restart && restart.addEventListener('click', setup);

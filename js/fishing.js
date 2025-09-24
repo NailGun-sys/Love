@@ -42,6 +42,7 @@
     const inZone = pos >= zoneLeft && pos <= zoneLeft + zoneWidth;
     if (inZone) {
       score += 1; scoreEl.textContent = String(score);
+      window.dispatchEvent(new CustomEvent('fish:score', { detail: score }));
       // move zone and speed up slightly
       zoneLeft = Math.max(0.05, Math.min(0.85, Math.random()*0.9));
       vel = Math.min(1.2, vel + 0.05);

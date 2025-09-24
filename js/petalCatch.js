@@ -67,6 +67,7 @@
       const dy = Math.abs(p.y - basketY);
       if (dy < 18 && dx < 40) {
         score += 1; scoreEl.textContent = String(score);
+        window.dispatchEvent(new CustomEvent('petal:score', { detail: score }));
         if (score > best) { best = score; bestEl.textContent = String(best); localStorage.setItem('petalBest', String(best)); }
         return false;
       }

@@ -251,7 +251,7 @@ body {
 .badge.active { opacity: 1; filter: none; }
 
 /* Guestbook */
-.guest-form { max-width: 720px; margin: 0 auto 12px; display: grid; grid-template-columns: 1fr 2fr auto; gap: 8px; }
+.guest-form { max-width: 720px; margin: 0 auto 12px; display: grid; grid-template-columns: 1fr auto; gap: 8px; }
 .guest-input { border: 2px solid #ffd0e0; border-radius: 10px; padding: 10px 12px; }
 .guest-list { max-width: 720px; margin: 0 auto; list-style: none; padding: 0; display: grid; gap: 8px; }
 .guest-list li { background: #fff; border-radius: 12px; padding: 10px 12px; box-shadow: var(--shadow); }
