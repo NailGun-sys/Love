@@ -59,6 +59,29 @@
     }
   });
 
+  // Hidden corner gesture to open Admin: tap top-left then top-right within 2.5s
+  (function(){
+    let lastCorner = '';
+    let lastTs = 0;
+    function whichCorner(x, y){
+      const w = window.innerWidth, h = window.innerHeight;
+      const m = 48; // margin threshold
+      if (x <= m && y <= m) return 'tl';
+      if (x >= w - m && y <= m) return 'tr';
+      if (x <= m && y >= h - m) return 'bl';
+      if (x >= w - m && y >= h - m) return 'br';
+      return '';
+    }
+    window.addEventListener('pointerdown', (e) => {
+      const corner = whichCorner(e.clientX, e.clientY);
+      const now = Date.now();
+      if (corner === 'tl') { lastCorner = 'tl'; lastTs = now; }
+      else if (corner === 'tr' && lastCorner === 'tl' && (now - lastTs) < 2500) {
+        lastCorner = ''; lastTs = 0; showSection('#admin');
+      } else if (corner) { lastCorner = corner; lastTs = now; }
+    }, { passive: true });
+  })();
+
   // Animated flowers field on landing
   const flowersRoot = document.querySelector('.flowers');
   const flowerEmojis = ['🌸','🌷','💮','🌺','🌼','🌻','🌹','🥀','🪷','🌾'];
