@@ -154,6 +154,27 @@
     if (dailyInput) dailyInput.value = val;
   }
   renderDaily();
+  // Firebase sync (optional)
+  (function(){
+    const cfg = window.FIREBASE_CONFIG;
+    if (!cfg || !window.firebase || !window.firebase.firestore) return;
+    try {
+      if (!window.firebase.apps.length) window.firebase.initializeApp(cfg);
+      const db = window.firebase.firestore();
+      const docRef = db.collection('loveApp').doc('dailyMessage');
+      docRef.onSnapshot((snap) => {
+        const data = snap.data();
+        if (data && typeof data.text === 'string') {
+          localStorage.setItem('dailyMessageCustom', data.text);
+          renderDaily();
+        }
+      });
+      function saveToRemote(text){ docRef.set({ text, updatedAt: Date.now() }).catch(()=>{}); }
+      const origSave = dailySave && dailySave.onclick;
+      dailySave && dailySave.addEventListener('click', () => { const t=(dailyInput?.value||'').trim(); saveToRemote(t); });
+      dailyClear && dailyClear.addEventListener('click', () => { saveToRemote(''); });
+    } catch(_) {}
+  })();
   dailySave && dailySave.addEventListener('click', () => {
     const val = (dailyInput?.value || '').trim();
     localStorage.setItem('dailyMessageCustom', val);

@@ -8,6 +8,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <!-- Optional: Firebase for cross-device daily message sync -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore-compat.js"></script>
+    <script>
+      // Set your Firebase config here to enable cross-device sync
+      // window.FIREBASE_CONFIG = { apiKey:"", authDomain:"", projectId:"" };
+    </script>
 </head>
 <body>
     <header class="site-header">
@@ -99,17 +106,7 @@
                     </div>
                     <p class="hint" style="margin-top:10px">Хранится локально в браузере (localStorage).</p>
                 </article>
-                <article class="cardx" style="text-align:left">
-                    <h4>Синхронизация через GitHub (опционально)</h4>
-                    <p class="hint">Чтобы видеть послание на всех устройствах, можно сохранить его в репозиторий.</p>
-                    <label style="display:block; margin:8px 0 6px; color: var(--sub)">GitHub персональный токен</label>
-                    <input id="ghToken" class="guest-input" type="password" placeholder="ghp_..." />
-                    <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap">
-                        <button class="btn" id="dailyLoadRemote">Загрузить из GitHub</button>
-                        <button class="btn btn--primary" id="dailySaveRemote">Сохранить в GitHub</button>
-                    </div>
-                    <p class="hint" style="margin-top:8px">Токен хранится только в твоём браузере и используется для записи в файл <code>daily.json</code> в этом репозитории.</p>
-                </article>
+                
             </div>
         </section>
 
