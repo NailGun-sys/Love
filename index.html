@@ -17,6 +17,10 @@
             <button class="nav__btn" data-target="#memory">Пары</button>
             <button class="nav__btn" data-target="#petal">Лови лепестки</button>
             <button class="nav__btn" data-target="#gallery">Наш милый уголок</button>
+            <button class="nav__btn" data-target="#story">История нас</button>
+            <button class="nav__btn" data-target="#favorites">Любимые вещи</button>
+            <button class="nav__btn" data-target="#playlist">Плейлист</button>
+            <button class="nav__btn" data-target="#promises">Обещаю</button>
         </nav>
     </header>
 
@@ -25,10 +29,11 @@
         <section id="home" class="section section--active">
             <div class="hero">
                 <h1 class="hero__title">Ты — моё счастье</h1>
-                <p class="hero__subtitle">Этот маленький мир я сделал для тебя. Открой его ♥</p>
+                <p class="hero__subtitle" id="rotatingQuote">Этот маленький мир я сделал для тебя. Открой его ♥</p>
                 <div class="hero__actions">
                     <button class="btn btn--primary" data-target="#memory">Играть в пары</button>
                     <button class="btn" data-target="#petal">Ловить лепестки</button>
+                    <button class="btn" id="openLetter">Секретное письмо ✉️</button>
                 </div>
             </div>
 
@@ -94,6 +99,84 @@
                 </figure>
             </div>
         </section>
+        <!-- Story Timeline -->
+        <section id="story" class="section">
+            <div class="section__head">
+                <h2>История нас</h2>
+            </div>
+            <ol class="timeline">
+                <li>
+                    <span class="timeline__dot">💘</span>
+                    <div class="timeline__card">
+                        <h4>Наше знакомство</h4>
+                        <p>С этого момента мир стал чуть розовее.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="timeline__dot">📚</span>
+                    <div class="timeline__card">
+                        <h4>Первая совместная книга</h4>
+                        <p>Обсуждали главы и делились любимыми цитатами.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="timeline__dot">🎲</span>
+                    <div class="timeline__card">
+                        <h4>Вечер настолок</h4>
+                        <p>Миплы, кубики и наши улыбки — идеальное сочетание.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Favorites Cards -->
+        <section id="favorites" class="section">
+            <div class="section__head">
+                <h2>Любимые вещи</h2>
+            </div>
+            <div class="cards">
+                <article class="cardx">
+                    <img class="pixel" src="assets/pixel-book.svg" alt="Книга">
+                    <h4>Книги</h4>
+                    <p>Читать вместе — это как путешествовать вдвоём.</p>
+                </article>
+                <article class="cardx">
+                    <img class="pixel" src="assets/pixel-dice.svg" alt="Кубики">
+                    <h4>Настольные игры</h4>
+                    <p>Командный дух и тёплые вечера с миплами.</p>
+                </article>
+                <article class="cardx">
+                    <img class="pixel" src="assets/pixel-heart.svg" alt="Сердце">
+                    <h4>Наши традиции</h4>
+                    <p>Маленькие ритуалы, которые делают день особенным.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Playlist -->
+        <section id="playlist" class="section">
+            <div class="section__head">
+                <h2>Плейлист для нас</h2>
+            </div>
+            <ul class="playlist">
+                <li>💗 <a href="https://www.youtube.com/results?search_query=love+song" target="_blank" rel="noopener">Love song — откроется в новой вкладке</a></li>
+                <li>🌙 <a href="https://www.youtube.com/results?search_query=lofi+romance" target="_blank" rel="noopener">Lofi romance</a></li>
+                <li>✨ <a href="https://www.youtube.com/results?search_query=romantic+instrumental" target="_blank" rel="noopener">Romantic instrumental</a></li>
+            </ul>
+        </section>
+
+        <!-- Promises Checklist -->
+        <section id="promises" class="section">
+            <div class="section__head">
+                <h2>Обещаю</h2>
+            </div>
+            <ul class="checklist" id="promiseList">
+                <li><label><input type="checkbox" data-key="hug"> Дарить объятия каждый день</label></li>
+                <li><label><input type="checkbox" data-key="listen"> Слушать и слышать тебя</label></li>
+                <li><label><input type="checkbox" data-key="date"> Устраивать уютные свидания</label></li>
+                <li><label><input type="checkbox" data-key="support"> Поддерживать во всём</label></li>
+            </ul>
+        </section>
     </main>
 
     <!-- Sweet Modal -->
@@ -102,7 +185,19 @@
             <div class="modal__emoji">💖</div>
             <h3>Я люблю тебя</h3>
             <p>Спасибо, что ты есть. Ты самая прекрасная!</p>
-            <button class="btn btn--primary">Спасибо</button>
+            <button class="btn btn--primary" aria-label="Закрыть">💖</button>
+        </form>
+    </dialog>
+
+    <!-- Secret Letter -->
+    <dialog id="secretLetter" class="modal">
+        <form method="dialog" class="modal__content">
+            <div class="modal__emoji">✉️</div>
+            <h3>Секретное письмо</h3>
+            <p>Каждый день рядом с тобой — подарок. Люблю твою улыбку, твои
+            смешные фразы и то, как ты согреваешь мир вокруг. Спасибо,
+            что делаешь меня счастливее.</p>
+            <button class="btn btn--primary" aria-label="Закрыть">💌</button>
         </form>
     </dialog>
 

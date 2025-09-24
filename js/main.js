@@ -52,6 +52,44 @@
     setTimeout(() => el.remove(), 6000);
   }
   setInterval(spawnHeart, 1200);
+
+  // Rotating love quotes
+  const quotes = [
+    'Ты моё самое любимое чудо. ✨',
+    'С тобой каждый день — праздник. 🎀',
+    'Ты делаешь мир светлее и теплее. 💗',
+    'Я выбираю тебя. Всегда. ♡',
+  ];
+  const quoteEl = document.getElementById('rotatingQuote');
+  if (quoteEl) {
+    let qi = 0;
+    setInterval(() => {
+      qi = (qi + 1) % quotes.length;
+      quoteEl.textContent = quotes[qi];
+    }, 3500);
+  }
+
+  // Secret letter dialog
+  const openLetterBtn = document.getElementById('openLetter');
+  if (openLetterBtn) {
+    openLetterBtn.addEventListener('click', () => {
+      const dlg = document.getElementById('secretLetter');
+      try { dlg.showModal(); } catch (e) { dlg.setAttribute('open',''); }
+    });
+  }
+
+  // Promises checklist persistence
+  const promiseList = document.getElementById('promiseList');
+  if (promiseList) {
+    const inputs = promiseList.querySelectorAll('input[type="checkbox"]');
+    inputs.forEach(inp => {
+      const key = 'promise_' + inp.dataset.key;
+      inp.checked = localStorage.getItem(key) === '1';
+      inp.addEventListener('change', () => {
+        localStorage.setItem(key, inp.checked ? '1' : '0');
+      });
+    });
+  }
 })();
 
 
