@@ -126,12 +126,36 @@
       'Хорошего дня, любимая!',
       'Ты делаешь мир теплее',
       'Ты мое вдохновение',
-      'Ты — моё самое нежное чудо',
+      'Ты моё самое нежное чудо',
     ];
     const d = new Date();
     const idx = (d.getFullYear()*372 + (d.getMonth()+1)*31 + d.getDate()) % dailyTexts.length;
-    daily.textContent = dailyTexts[idx];
+    const stored = localStorage.getItem('dailyMessageCustom');
+    daily.textContent = stored && stored.trim() ? stored : dailyTexts[idx];
   }
+
+  // Daily page render and admin wiring
+  const dailyFull = document.getElementById('dailyMessageFull');
+  const dailyInput = document.getElementById('dailyInput');
+  const dailySave = document.getElementById('dailySave');
+  const dailyClear = document.getElementById('dailyClear');
+  function renderDaily() {
+    const fallback = 'Сегодня я думаю о тебе';
+    const val = (localStorage.getItem('dailyMessageCustom') || '').trim();
+    if (daily) daily.textContent = val || fallback;
+    if (dailyFull) dailyFull.textContent = val || fallback;
+    if (dailyInput) dailyInput.value = val;
+  }
+  renderDaily();
+  dailySave && dailySave.addEventListener('click', () => {
+    const val = (dailyInput?.value || '').trim();
+    localStorage.setItem('dailyMessageCustom', val);
+    renderDaily();
+  });
+  dailyClear && dailyClear.addEventListener('click', () => {
+    localStorage.removeItem('dailyMessageCustom');
+    renderDaily();
+  });
 
   // Hero playful buttons
   document.addEventListener('click', (e) => {
