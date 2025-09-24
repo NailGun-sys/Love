@@ -56,7 +56,20 @@
   function stop() { running = false; }
 
   restart && restart.addEventListener('click', () => { reset(); start(); });
-  window.addEventListener('keydown', (e) => { if (e.key === ' '){ e.preventDefault(); tap(); } });
+  function isTypingOrOverlay() {
+    const ae = document.activeElement;
+    const typing = ae && ((ae.tagName === 'INPUT') || (ae.tagName === 'TEXTAREA') || ae.isContentEditable);
+    const gateVisible = (() => { const g = document.getElementById('gate'); return g && g.style.display !== 'none'; })();
+    const welcomeVisible = (() => { const w = document.getElementById('welcome'); return w && w.classList.contains('show') && !w.classList.contains('hide'); })();
+    return typing || gateVisible || welcomeVisible;
+  }
+  window.addEventListener('keydown', (e) => {
+    if (e.key === ' '){
+      if (isTypingOrOverlay()) return; // do not block space while typing or overlays are up
+      e.preventDefault();
+      tap();
+    }
+  });
   bar && bar.addEventListener('pointerdown', tap);
   window.addEventListener('resize', layout);
 
