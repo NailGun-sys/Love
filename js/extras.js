@@ -12,10 +12,19 @@
   let photos = JSON.parse(localStorage.getItem(ALBUM_KEY) || '[]');
   // Preload from assets/album/* if present and local album is empty
   const DEFAULTS = [
-    // Add file names here if folder exists on hosting
+    'IMG_0854.JPG',
+    'IMG_1010.JPG',
+    'IMG_1022.JPG',
+    'Screenshot_3.png',
+    'photo_2025-08-20_00-46-04.jpg',
+    'photo_2025-09-01_20-54-15.jpg',
+    'photo_2025-09-01_20-54-19.jpg',
+    'photo_2025-09-07_02-07-46.jpg',
+    'photo_2025-09-07_15-51-45.jpg',
+    'photo_2025-09-15_17-03-14.jpg'
   ];
   if (photos.length === 0 && DEFAULTS.length) {
-    photos = DEFAULTS.map(n => 'assets/album/' + n);
+    photos = DEFAULTS.map(n => 'album/' + n);
     saveAlbum();
   }
   function renderAlbum(){
