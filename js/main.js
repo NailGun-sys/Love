@@ -98,6 +98,17 @@
     }, 3500);
   }
 
+  // Hero playful buttons
+  document.addEventListener('click', (e) => {
+    const t = e.target;
+    if (t && t.id === 'spawnHearts') {
+      for (let i=0;i<6;i++) setTimeout(spawnHeart, i*120);
+    }
+    if (t && t.id === 'spawnFlowers') {
+      for (let i=0;i<6;i++) setTimeout(spawnFlower, i*120);
+    }
+  });
+
   // Secret letter dialog
   const openLetterBtn = document.getElementById('openLetter');
   if (openLetterBtn) {
