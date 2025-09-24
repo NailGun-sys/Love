@@ -68,6 +68,16 @@
             <div id="albumGrid" class="album-grid"></div>
         </section>
 
+        <!-- Photo Viewer Modal -->
+        <dialog id="photoViewer" class="modal">
+            <form method="dialog" class="modal__content" style="padding:0">
+                <img id="photoViewerImg" src="" alt="photo" style="max-width:90vw; max-height:80vh; display:block" />
+                <div style="padding:8px; text-align:center">
+                    <button class="btn btn--primary" aria-label="Закрыть">Закрыть</button>
+                </div>
+            </form>
+        </dialog>
+
         <!-- Achievements / Quests -->
         <section id="achievements" class="section">
             <div class="section__head">

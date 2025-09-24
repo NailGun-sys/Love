@@ -73,7 +73,7 @@
     el.style.setProperty('--s', size+'px');
     el.style.setProperty('--d', duration+'s');
     el.style.left = left + '%';
-    el.style.bottom = '-40px';
+    el.style.bottom = '-40px'; // ensure start from bottom on all devices
     flowersRoot.appendChild(el);
     setTimeout(() => el.remove(), duration*1000);
   }
