@@ -211,9 +211,16 @@ body {
 .cardx { background: #fff; border-radius: 14px; box-shadow: var(--shadow); padding: 16px; text-align: center; }
 .cardx h4 { margin: 8px 0 6px; font-family: 'Playfair Display', serif; }
 .cardx p { margin: 0; color: var(--sub); }
-/* pulse animation for reasons */
-.reasons .cardx { animation: softPulse 3s ease-in-out infinite; }
-@keyframes softPulse { 0%, 100% { transform: translateY(0); box-shadow: var(--shadow); } 50% { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(255,77,136,.22); } }
+/* heartbeat animation for reasons (gentle scale) */
+.reasons .cardx { animation: heartbeat 2.6s ease-in-out infinite; transform-origin: center; }
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  15% { transform: scale(1.04); }
+  30% { transform: scale(0.985); }
+  45% { transform: scale(1.05); }
+  60% { transform: scale(1.0); }
+  100% { transform: scale(1); }
+}
 
 .playlist { max-width: 760px; margin: 0 auto; background: #fff; border-radius: 14px; box-shadow: var(--shadow); padding: 12px 16px; }
 .playlist li { margin: 8px 0; }
