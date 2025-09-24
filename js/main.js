@@ -144,8 +144,7 @@
   playMusicBtn && playMusicBtn.addEventListener('click', () => playMusic());
   volume && volume.addEventListener('input', () => { ensureAudio(); audio.volume = Number(volume.value || '0.35'); });
 
-  // start music after unlock automatically
-  window.addEventListener('unlocked', () => { playMusic(); });
+  // music will start only by explicit user action ("тык" or 🔈 button)
 
   // Secret letter dialog
   const openLetterBtn = document.getElementById('openLetter');
