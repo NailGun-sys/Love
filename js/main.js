@@ -8,9 +8,23 @@
     if (gate) gate.style.display = 'none';
     localStorage.setItem(GATE_KEY, '1');
     document.body.style.overflow = '';
+    // show welcome, then fade away
+    const welcome = document.getElementById('welcome');
+    if (welcome) {
+      welcome.classList.add('show');
+      setTimeout(() => {
+        welcome.classList.add('hide');
+      }, 1000);
+      setTimeout(() => {
+        welcome.style.display = 'none';
+        document.querySelectorAll('main > section, .site-header').forEach(el => el.classList.add('reveal'));
+      }, 1800);
+    }
   }
   if (localStorage.getItem(GATE_KEY) === '1') {
     if (gate) gate.style.display = 'none';
+    const welcome = document.getElementById('welcome');
+    if (welcome) setTimeout(() => { welcome.classList.add('show'); setTimeout(()=>{ welcome.classList.add('hide'); }, 600); setTimeout(()=>{ welcome.style.display='none'; }, 1400); }, 50);
   } else if (gate) {
     document.body.style.overflow = 'hidden';
     gate.style.display = 'grid';
