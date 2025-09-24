@@ -66,7 +66,7 @@
       const active = document.activeElement;
       if (active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable)) return;
       const w = window.innerWidth, h = window.innerHeight;
-      const inBR = (e.clientX >= w * 0.75) && (e.clientY >= h * 0.75); // bottom-right quarter
+      const inBR = (e.clientX >= w - 10) && (e.clientY >= h - 10); // 10px bottom-right corner
       if (!inBR) { lastTap = 0; return; }
       const now = Date.now();
       const dt = now - lastTap;
