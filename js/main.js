@@ -188,6 +188,38 @@
     }, 3500);
   }
 
+  // Love days counter (auto-updates daily)
+  (function(){
+    const box = document.getElementById('loveCounter');
+    if (!box) return;
+    const iso = box.getAttribute('data-start') || '2025-08-24';
+    const start = new Date(iso + 'T00:00:00');
+    function plural(n, one, few, many){
+      const n10 = n % 10, n100 = n % 100;
+      if (n10 === 1 && n100 !== 11) return one;
+      if (n10 >= 2 && n10 <= 4 && (n100 < 10 || n100 >= 20)) return few;
+      return many;
+    }
+    function format(){
+      const now = new Date();
+      let y = now.getFullYear() - start.getFullYear();
+      let m = now.getMonth() - start.getMonth();
+      let d = now.getDate() - start.getDate();
+      if (d < 0) { m -= 1; const prev = new Date(now.getFullYear(), now.getMonth(), 0); d += prev.getDate(); }
+      if (m < 0) { y -= 1; m += 12; }
+      const totalDays = Math.floor((now - start) / (1000*60*60*24));
+      const parts = [];
+      if (y > 0) parts.push(`${y} ${plural(y,'год','года','лет')}`);
+      if (m > 0) parts.push(`${m} ${plural(m,'месяц','месяца','месяцев')}`);
+      parts.push(`${d} ${plural(d,'день','дня','дней')}`);
+      box.innerHTML = `<b>Мы вместе:</b> ${parts.join(', ')} <span style="color:var(--sub)">(${totalDays} ${plural(totalDays,'день','дня','дней')})</span>`;
+    }
+    format();
+    // update around midnight
+    const msToNextDay = (()=>{ const n=new Date(); const t=new Date(n.getFullYear(), n.getMonth(), n.getDate()+1, 0,0,2); return t-n; })();
+    setTimeout(()=>{ format(); setInterval(format, 24*60*60*1000); }, msToNextDay);
+  })();
+
   // Daily message
   // Daily short block on home removed per request
 
