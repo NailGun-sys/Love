@@ -100,15 +100,23 @@
   function setBadge(key, val){ done[key]=val; localStorage.setItem(QUEST_KEY, JSON.stringify(done)); const b=document.querySelector(`[data-badge="${key}"]`); if (b) b.classList.toggle('active', !!val); }
   function renderQuests(){ if (!questList) return; ['petal10','petal20','petal35','petal50','petal75','harvest5','harvest10','harvest15','harvest20','harvest25','fish5','fish10','fish15','fish20','fish25'].forEach(k=> setBadge(k, done[k]===true)); }
 
-  // GUESTBOOK with optional Firebase sync (no own server required)
+  // GUESTBOOK with optional remote HTTP endpoint or Firebase (no own server to host)
   const guestForm = document.getElementById('guestForm');
   const guestList = document.getElementById('guestList');
   const GUEST_KEY = 'guestbook_v2';
   let notes = JSON.parse(localStorage.getItem(GUEST_KEY) || '[]');
+  const ENDPOINT = window.GUESTBOOK_ENDPOINT || '';
+  const EP_TOKEN = window.GUESTBOOK_TOKEN || '';
 
   // If Firebase config is provided, use Firestore for real-time global sync
   let db = null; let unsub = null;
   (function initGuestbookSync(){
+    // If a simple HTTP endpoint is configured, prefer it over Firebase
+    if (ENDPOINT) {
+      // initial load
+      fetchGuestRemote();
+      return; // skip Firebase path
+    }
     const cfg = window.FIREBASE_CONFIG;
     if (!cfg || !window.firebase || !window.firebase.firestore) { return; }
     try {
@@ -136,7 +144,8 @@
         notes.splice(idx,1);
         localStorage.setItem(GUEST_KEY, JSON.stringify(notes));
         renderGuest();
-        if (db) { try { await db.collection('loveApp').doc('guestbook').set({ notes, updatedAt: Date.now() }); } catch(_) {} }
+        if (ENDPOINT) { try { await fetch(ENDPOINT, { method:'DELETE', headers: { 'Content-Type':'application/json', ...(EP_TOKEN?{Authorization:'Bearer '+EP_TOKEN}:{}) }, body: JSON.stringify({ t:n.t }) }); fetchGuestRemote(); } catch(_) {} }
+        else if (db) { try { await db.collection('loveApp').doc('guestbook').set({ notes, updatedAt: Date.now() }); } catch(_) {} }
       });
       li.appendChild(del);
       guestList.appendChild(li);
@@ -151,8 +160,22 @@
     localStorage.setItem(GUEST_KEY, JSON.stringify(notes));
     input.value = '';
     renderGuest();
-    if (db) { try { await db.collection('loveApp').doc('guestbook').set({ notes, updatedAt: Date.now() }); } catch(_) {} }
+    if (ENDPOINT) { try { await fetch(ENDPOINT, { method:'POST', headers: { 'Content-Type':'application/json', ...(EP_TOKEN?{Authorization:'Bearer '+EP_TOKEN}:{}) }, body: JSON.stringify(notes[notes.length-1]) }); fetchGuestRemote(); } catch(_) {} }
+    else if (db) { try { await db.collection('loveApp').doc('guestbook').set({ notes, updatedAt: Date.now() }); } catch(_) {} }
   });
+
+  async function fetchGuestRemote(){
+    try {
+      const res = await fetch(ENDPOINT, { headers: { ...(EP_TOKEN?{Authorization:'Bearer '+EP_TOKEN}:{}) } });
+      if (!res.ok) return;
+      const data = await res.json();
+      if (Array.isArray(data)) {
+        notes = data.filter(x => x && typeof x.m === 'string' && typeof x.t === 'number');
+        localStorage.setItem(GUEST_KEY, JSON.stringify(notes));
+        renderGuest();
+      }
+    } catch(_) {}
+  }
 
   // init when sections visible
   function onView(id, fn){ const s = document.getElementById(id); if(!s) return; const ob = new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting){ fn(); ob.disconnect(); } }); }); ob.observe(s); }
