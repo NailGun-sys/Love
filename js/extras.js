@@ -105,7 +105,8 @@
   const guestList = document.getElementById('guestList');
   const GUEST_KEY = 'guestbook_v2';
   let notes = JSON.parse(localStorage.getItem(GUEST_KEY) || '[]');
-  const ENDPOINT = window.GUESTBOOK_ENDPOINT || '';
+  // Default to local PHP endpoint bundled with the site
+  const ENDPOINT = (window.GUESTBOOK_ENDPOINT || 'guestbook.php');
   const EP_TOKEN = window.GUESTBOOK_TOKEN || '';
 
   // If Firebase config is provided, use Firestore for real-time global sync
