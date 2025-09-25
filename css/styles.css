@@ -315,4 +315,20 @@ body {
 }
 
 
+/* Simon */
+.simon-grid { max-width: 420px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.simon-pad { aspect-ratio: 1/1; border-radius: 14px; border: 2px solid #ffd3e2; box-shadow: var(--shadow); cursor: pointer; }
+.pad-0 { background: radial-gradient(circle at 30% 30%, #9cff9c, #2ecc71); }
+.pad-1 { background: radial-gradient(circle at 30% 30%, #ff9c9c, #e74c3c); }
+.pad-2 { background: radial-gradient(circle at 30% 30%, #ffe69c, #f1c40f); }
+.pad-3 { background: radial-gradient(circle at 30% 30%, #9cc8ff, #3498db); }
+.simon-pad.active { filter: brightness(1.25) saturate(1.15); transform: scale(1.02); }
+
+/* Tic Tac Toe */
+.ttt-grid { max-width: 360px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.ttt-cell { aspect-ratio: 1/1; background: #fff; border: 2px solid #ffd3e2; border-radius: 12px; box-shadow: var(--shadow); display: grid; place-items: center; font-size: 42px; font-weight: 700; color: var(--rose); cursor: pointer; }
+.ttt-cell.ai { color: #7a355c; }
+.ttt-cell.win { outline: 3px solid var(--rose); box-shadow: 0 0 0 4px rgba(255,77,136,.12) inset; }
+
+
 

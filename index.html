@@ -125,7 +125,7 @@
         <section id="achievements" class="section">
             <div class="section__head">
                 <h2>Достижения</h2>
-                <div class="controls"><span class="stat">Собери все бейджи, чтобы засиять ✨</span></div>
+                
             </div>
             <ul id="questList" class="quests">
                 <li><span>Лепестки: 10 очков</span><span class="badge" data-badge="petal10">💗</span></li>
@@ -170,6 +170,8 @@
                 <article class="cardx"><h4>Лепестки</h4><p>Лови лепестки корзинкой.</p><button class="btn" data-target="#petal">Играть</button></article>
                 <article class="cardx"><h4>Урожай</h4><p>Вырасти и собери овощи.</p><button class="btn" data-target="#harvest">Играть</button></article>
                 <article class="cardx"><h4>Рыбалка</h4><p>Попади в золотую зону.</p><button class="btn" data-target="#fishing">Играть</button></article>
+                <article class="cardx"><h4>Саймон</h4><p>Повтори световую последовательность.</p><button class="btn" data-target="#simon">Играть</button></article>
+                <article class="cardx"><h4>Крестики-нолики</h4><p>Победи простого ИИ.</p><button class="btn" data-target="#tictactoe">Играть</button></article>
             </div>
         </section>
 
@@ -184,6 +186,38 @@
                 </div>
             </div>
             <div id="memoryGrid" class="memory-grid" aria-label="Игровое поле пар"></div>
+        </section>
+
+        <!-- Simon Game -->
+        <section id="simon" class="section">
+            <div class="section__head">
+                <h2>Саймон</h2>
+                <div class="controls">
+                    <button class="btn" id="simonStart">Старт</button>
+                    <span class="stat">Уровень: <b id="simonLevel">0</b></span>
+                    <span class="stat">Лучший: <b id="simonBest">0</b></span>
+                </div>
+            </div>
+            <div id="simonBoard" class="simon-grid" aria-label="Игра Саймон">
+                <button class="simon-pad pad-0" data-pad="0" aria-label="Зелёный"></button>
+                <button class="simon-pad pad-1" data-pad="1" aria-label="Красный"></button>
+                <button class="simon-pad pad-2" data-pad="2" aria-label="Жёлтый"></button>
+                <button class="simon-pad pad-3" data-pad="3" aria-label="Синий"></button>
+            </div>
+            <p class="hint">Запомни и повтори мигающую последовательность. Каждый раунд прибавляется один шаг.</p>
+        </section>
+
+        <!-- Tic Tac Toe -->
+        <section id="tictactoe" class="section">
+            <div class="section__head">
+                <h2>Крестики-нолики</h2>
+                <div class="controls">
+                    <button class="btn" id="tttRestart">Заново</button>
+                    <span class="stat">Ты: X</span>
+                </div>
+            </div>
+            <div id="tttBoard" class="ttt-grid" aria-label="Поле крестики-нолики"></div>
+            <p id="tttStatus" class="hint">Твой ход</p>
         </section>
 
         <!-- Petal Catch Game -->
@@ -301,6 +335,8 @@
     <script src="js/petalCatch.js"></script>
     <script src="js/harvest.js"></script>
     <script src="js/fishing.js"></script>
+    <script src="js/simon.js"></script>
+    <script src="js/tictactoe.js"></script>
     <script src="js/extras.js"></script>
     <script>
         // Open modal after small delay on first visit
