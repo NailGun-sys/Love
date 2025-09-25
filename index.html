@@ -27,7 +27,6 @@
             <button class="nav__btn" data-target="#games">Игры</button>
             
             <button class="nav__btn" data-target="#album">Пиксельный альбом</button>
-            <button class="nav__btn" data-target="#daily">Ежедневное послание</button>
             <button class="nav__btn" data-target="#achievements">Достижения</button>
             <button class="nav__btn" data-target="#guestbook">Послания</button>
             <button class="nav__btn" id="musicToggle" title="Музыка">🔊</button>
@@ -77,38 +76,14 @@
             <div id="albumGrid" class="album-grid"></div>
         </section>
 
-        <!-- Daily Message Page -->
-        <section id="daily" class="section">
-            <div class="section__head">
-                <h2>Ежедневное послание</h2>
-            </div>
-            <div class="daily-wrap">
-                <article class="daily-card">
-                    <div class="daily-emoji">💌</div>
-                    <h4>Сегодняшние слова</h4>
-                    <p id="dailyMessageFull" class="daily-text">Сегодня я думаю о тебе</p>
-                </article>
-            </div>
-        </section>
+        
 
         <!-- Admin Panel -->
         <section id="admin" class="section">
             <div class="section__head">
                 <h2>Админ панель</h2>
             </div>
-            <div class="cards" style="max-width:720px">
-                <article class="cardx" style="text-align:left">
-                    <h4>Ежедневное послание</h4>
-                    <label for="dailyInput" style="display:block; margin:8px 0 6px; color: var(--sub)">Текст на сегодня</label>
-                    <textarea id="dailyInput" class="guest-input" rows="3" style="width:100%"></textarea>
-                    <div style="margin-top:10px; display:flex; gap:10px">
-                        <button class="btn btn--primary" id="dailySave">Сохранить</button>
-                        <button class="btn" id="dailyClear">Очистить</button>
-                    </div>
-                    <p class="hint" style="margin-top:10px">Хранится локально в браузере (localStorage).</p>
-                </article>
-                
-            </div>
+            <div class="cards" style="max-width:720px"></div>
         </section>
 
         <!-- Photo Viewer Modal -->

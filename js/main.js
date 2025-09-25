@@ -191,49 +191,7 @@
   // Daily message
   // Daily short block on home removed per request
 
-  // Daily page render and admin wiring
-  const dailyFull = document.getElementById('dailyMessageFull');
-  const dailyInput = document.getElementById('dailyInput');
-  const dailySave = document.getElementById('dailySave');
-  const dailyClear = document.getElementById('dailyClear');
-  function renderDaily() {
-    const fallback = 'Сегодня я думаю о тебе';
-    const val = (localStorage.getItem('dailyMessageCustom') || '').trim();
-    if (daily) daily.textContent = val || fallback;
-    if (dailyFull) dailyFull.textContent = val || fallback;
-    if (dailyInput) dailyInput.value = val;
-  }
-  renderDaily();
-  // Firebase sync (optional)
-  (function(){
-    const cfg = window.FIREBASE_CONFIG;
-    if (!cfg || !window.firebase || !window.firebase.firestore) return;
-    try {
-      if (!window.firebase.apps.length) window.firebase.initializeApp(cfg);
-      const db = window.firebase.firestore();
-      const docRef = db.collection('loveApp').doc('dailyMessage');
-      docRef.onSnapshot((snap) => {
-        const data = snap.data();
-        if (data && typeof data.text === 'string') {
-          localStorage.setItem('dailyMessageCustom', data.text);
-          renderDaily();
-        }
-      });
-      function saveToRemote(text){ docRef.set({ text, updatedAt: Date.now() }).catch(()=>{}); }
-      const origSave = dailySave && dailySave.onclick;
-      dailySave && dailySave.addEventListener('click', () => { const t=(dailyInput?.value||'').trim(); saveToRemote(t); });
-      dailyClear && dailyClear.addEventListener('click', () => { saveToRemote(''); });
-    } catch(_) {}
-  })();
-  dailySave && dailySave.addEventListener('click', () => {
-    const val = (dailyInput?.value || '').trim();
-    localStorage.setItem('dailyMessageCustom', val);
-    renderDaily();
-  });
-  dailyClear && dailyClear.addEventListener('click', () => {
-    localStorage.removeItem('dailyMessageCustom');
-    renderDaily();
-  });
+  // Daily message removed per request
 
   // Hero playful buttons
   document.addEventListener('click', (e) => {

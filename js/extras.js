@@ -100,30 +100,58 @@
   function setBadge(key, val){ done[key]=val; localStorage.setItem(QUEST_KEY, JSON.stringify(done)); const b=document.querySelector(`[data-badge="${key}"]`); if (b) b.classList.toggle('active', !!val); }
   function renderQuests(){ if (!questList) return; ['petal10','petal20','petal35','petal50','petal75','harvest5','harvest10','harvest15','harvest20','harvest25','fish5','fish10','fish15','fish20','fish25'].forEach(k=> setBadge(k, done[k]===true)); }
 
-  // GUESTBOOK
+  // GUESTBOOK with optional Firebase sync (no own server required)
   const guestForm = document.getElementById('guestForm');
   const guestList = document.getElementById('guestList');
-  const GUEST_KEY = 'guestbook_v1';
+  const GUEST_KEY = 'guestbook_v2';
   let notes = JSON.parse(localStorage.getItem(GUEST_KEY) || '[]');
+
+  // If Firebase config is provided, use Firestore for real-time global sync
+  let db = null; let unsub = null;
+  (function initGuestbookSync(){
+    const cfg = window.FIREBASE_CONFIG;
+    if (!cfg || !window.firebase || !window.firebase.firestore) { return; }
+    try {
+      if (!window.firebase.apps.length) window.firebase.initializeApp(cfg);
+      db = window.firebase.firestore();
+      // Real-time updates
+      unsub = db.collection('loveApp').doc('guestbook').onSnapshot((snap) => {
+        const data = snap.data();
+        if (data && Array.isArray(data.notes)) {
+          notes = data.notes.filter(x => x && typeof x.m === 'string');
+          localStorage.setItem(GUEST_KEY, JSON.stringify(notes));
+          renderGuest();
+        }
+      });
+    } catch(_) { db = null; }
+  })();
+
   function renderGuest(){
     if (!guestList) return;
     guestList.innerHTML='';
     notes.forEach((n, idx) => {
       const li = document.createElement('li');
       const txt = document.createElement('span'); txt.textContent = n.m; li.appendChild(txt);
-      const del = document.createElement('button'); del.textContent = '✖'; del.style.border='none'; del.style.background='transparent'; del.style.cursor='pointer'; del.style.marginLeft='8px'; del.addEventListener('click', ()=>{ notes.splice(idx,1); localStorage.setItem(GUEST_KEY, JSON.stringify(notes)); renderGuest(); });
+      const del = document.createElement('button'); del.textContent = '✖'; del.style.border='none'; del.style.background='transparent'; del.style.cursor='pointer'; del.style.marginLeft='8px'; del.addEventListener('click', async ()=>{
+        notes.splice(idx,1);
+        localStorage.setItem(GUEST_KEY, JSON.stringify(notes));
+        renderGuest();
+        if (db) { try { await db.collection('loveApp').doc('guestbook').set({ notes, updatedAt: Date.now() }); } catch(_) {} }
+      });
       li.appendChild(del);
       guestList.appendChild(li);
     });
   }
-  guestForm && guestForm.addEventListener('submit', (e)=>{
+  guestForm && guestForm.addEventListener('submit', async (e)=>{
     e.preventDefault();
-    const msg = document.getElementById('guestMsg').value.trim();
+    const input = document.getElementById('guestMsg');
+    const msg = input.value.trim();
     if (!msg) return;
     notes.push({ m:msg, t:Date.now() });
     localStorage.setItem(GUEST_KEY, JSON.stringify(notes));
-    (document.getElementById('guestMsg').value = '');
+    input.value = '';
     renderGuest();
+    if (db) { try { await db.collection('loveApp').doc('guestbook').set({ notes, updatedAt: Date.now() }); } catch(_) {} }
   });
 
   // init when sections visible
