@@ -64,6 +64,16 @@
             <!-- Animated Flowers Field -->
             <div class="flowers" aria-hidden="true"></div>
             
+            <!-- Pixel Pet -->
+            <div class="pet" aria-live="polite" aria-label="Живой уголок">
+                <canvas id="petCanvas" width="96" height="96" class="pet__canvas" aria-hidden="true"></canvas>
+                <div class="pet__bubble" id="petBubble" hidden>Привет!</div>
+                <div class="pet__actions">
+                    <button class="btn" id="petWave" title="Помахать">👋</button>
+                    <button class="btn" id="petSnack" title="Угостить">🍪</button>
+                </div>
+            </div>
+            
         </section>
 
         
@@ -311,6 +321,7 @@
     <script src="js/petalCatch.js"></script>
     <script src="js/harvest.js"></script>
     <script src="js/fishing.js"></script>
+    <script src="js/pet.js"></script>
     <script src="js/simon.js"></script>
     <script src="js/tictactoe.js"></script>
     <script src="js/extras.js"></script>
